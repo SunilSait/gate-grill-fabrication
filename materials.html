@@ -37,12 +37,95 @@
         .pro-item, .con-item { display:flex; align-items:flex-start; gap:0.6rem; font-size:0.875rem; margin-bottom:0.65rem; }
         .pro-item svg { color:#16A34A; flex-shrink:0; margin-top:2px; }
         .con-item svg { color:#DC2626; flex-shrink:0; margin-top:2px; }
-        .use-case-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:2rem; }
-        @media (max-width:768px) { .use-case-grid { grid-template-columns:1fr; } }
-        .use-case-card { background:var(--bg-card); border:1px solid var(--border-default); border-radius:var(--radius-xl); padding:1.75rem; }
-        .use-case-card-tag { display:block; font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--primary); margin-bottom:0.75rem; }
-        .use-case-list { display:flex; flex-direction:column; gap:0.5rem; }
-        .use-case-item { font-size:0.875rem; display:flex; align-items:center; gap:0.5rem; }
+
+        @media (max-width: 640px) {
+            .table-responsive {
+                overflow-x: hidden;
+                border-radius: var(--radius-lg);
+            }
+            .materials-table {
+                table-layout: fixed;
+                width: 100%;
+                font-size: 0.68rem;
+            }
+            .materials-table th {
+                padding: 0.55rem 0.2rem;
+                font-size: 0.64rem;
+                letter-spacing: 0;
+                line-height: 1.2;
+                text-align: center;
+                word-break: break-word;
+            }
+            .materials-table th:first-child {
+                width: 25%;
+                text-align: left;
+                padding-left: 0.35rem;
+            }
+            .materials-table th:nth-child(2),
+            .materials-table th:nth-child(3),
+            .materials-table th:nth-child(4) {
+                width: 25%;
+            }
+            .materials-table td {
+                padding: 0.45rem 0.2rem;
+                font-size: 0.62rem;
+                line-height: 1.2;
+                text-align: center;
+                word-break: break-word;
+                vertical-align: middle;
+            }
+            .materials-table td:first-child {
+                text-align: left;
+                padding-left: 0.35rem;
+                font-weight: 600;
+                font-size: 0.64rem;
+            }
+            .materials-table small {
+                font-size: 0.54rem;
+                display: block;
+                line-height: 1.15;
+                margin-top: 1px;
+                color: var(--text-muted);
+            }
+            .mat-tag {
+                padding: 0.12rem 0.3rem;
+                font-size: 0.56rem;
+                letter-spacing: 0;
+                line-height: 1.1;
+                display: inline-block;
+                border-radius: var(--radius-full);
+            }
+            .mat-check, .mat-cross, .mat-mid {
+                font-size: 0.6rem;
+                display: inline-block;
+                line-height: 1.15;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .materials-table th {
+                font-size: 0.58rem;
+                padding: 0.45rem 0.15rem;
+            }
+            .materials-table th:first-child {
+                padding-left: 0.25rem;
+            }
+            .materials-table td {
+                font-size: 0.58rem;
+                padding: 0.4rem 0.15rem;
+            }
+            .materials-table td:first-child {
+                font-size: 0.6rem;
+                padding-left: 0.25rem;
+            }
+            .materials-table small {
+                font-size: 0.5rem;
+            }
+            .mat-tag {
+                font-size: 0.52rem;
+                padding: 0.1rem 0.25rem;
+            }
+        }
         /* Materials Page CTA with Left Image */
         .materials-cta-card {
             background: radial-gradient(130% 130% at 0% 0%, #291F18 0%, #171310 50%, #0D0A08 100%);
@@ -84,9 +167,9 @@
         }
         .materials-cta-grid {
             display: grid;
-            grid-template-columns: 0.85fr 1.15fr;
+            grid-template-columns: 0.9fr 1.1fr;
             gap: 3rem;
-            align-items: center;
+            align-items: stretch;
             position: relative;
             z-index: 1;
         }
@@ -94,12 +177,16 @@
         .materials-cta-image-col {
             position: relative;
             width: 100%;
+            height: 100%;
+            display: flex;
         }
         .materials-cta-img-wrap {
             position: relative;
             border-radius: 18px;
             overflow: hidden;
-            aspect-ratio: 4 / 3;
+            width: 100%;
+            height: 100%;
+            min-height: 380px;
             border: 1px solid rgba(245, 158, 11, 0.35);
             box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65), 0 0 30px rgba(180, 83, 9, 0.15);
         }
@@ -287,6 +374,11 @@
                 grid-template-columns: 1fr;
                 gap: 2.25rem;
             }
+            .materials-cta-img-wrap {
+                min-height: unset;
+                aspect-ratio: 16 / 10;
+                max-height: 320px;
+            }
             .materials-cta-btns {
                 flex-direction: column;
                 align-items: stretch;
@@ -294,6 +386,51 @@
             .materials-cta-btns .btn {
                 width: 100%;
                 justify-content: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .materials-cta-card {
+                padding: 2rem 1.15rem;
+                border-radius: 18px;
+            }
+            .materials-cta-grid {
+                gap: 1.75rem;
+            }
+            .materials-cta-title {
+                font-size: 1.5rem;
+                margin-bottom: 0.85rem;
+            }
+            .materials-cta-desc {
+                font-size: 0.9rem;
+                line-height: 1.55;
+                margin-bottom: 1.35rem;
+            }
+            .materials-cta-btns {
+                gap: 0.75rem;
+            }
+            .materials-cta-btns .btn {
+                padding: 0.75rem 1.25rem;
+                font-size: 0.875rem;
+            }
+            .materials-cta-badge-floating {
+                padding: 0.45rem 0.75rem;
+                border-radius: 10px;
+                bottom: 10px;
+                left: 10px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .materials-cta-card {
+                padding: 1.65rem 0.9rem;
+                border-radius: 16px;
+            }
+            .materials-cta-title {
+                font-size: 1.35rem;
+            }
+            .materials-cta-desc {
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -326,41 +463,56 @@
         </div>
         <div class="grid-3 reveal">
             <div class="material-card">
-                <div class="material-card-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/></svg>
+                <div class="material-card-img-wrap">
+                    <img src="assets/images/mat-mild-steel.jpg" alt="Mild Steel (MS) Fabrication" class="material-card-img" loading="lazy">
+                    <div class="material-card-badge-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/></svg>
+                    </div>
                 </div>
-                <h3>Mild Steel (MS)</h3>
-                <p>The workhorse of gate fabrication. Strong, versatile, and affordable. Ideal for all gate types, compound walls, and heavy-duty applications.</p>
-                <div class="material-card-props">
-                    <span class="material-prop">Strong</span>
-                    <span class="material-prop">Affordable</span>
-                    <span class="material-prop">Versatile</span>
-                    <span class="material-prop">Powder Coated</span>
-                </div>
-            </div>
-            <div class="material-card" style="border-color:rgba(180,83,9,0.25);box-shadow:var(--shadow-card-hover);">
-                <div class="material-card-icon" style="background:var(--primary);color:#fff;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                </div>
-                <h3>Stainless Steel (SS)</h3>
-                <p>Premium marine-grade material. Naturally corrosion-resistant with a lustrous finish. The first choice for coastal homes and luxury installations.</p>
-                <div class="material-card-props">
-                    <span class="material-prop" style="background:var(--primary-subtle);color:var(--primary);border-color:rgba(180,83,9,0.2);">Corrosion-Free</span>
-                    <span class="material-prop" style="background:var(--primary-subtle);color:var(--primary);border-color:rgba(180,83,9,0.2);">Premium Look</span>
-                    <span class="material-prop" style="background:var(--primary-subtle);color:var(--primary);border-color:rgba(180,83,9,0.2);">Zero Maintenance</span>
+                <div class="material-card-body">
+                    <h3>Mild Steel (MS)</h3>
+                    <p>The workhorse of gate fabrication. Strong, versatile, and affordable. Ideal for all gate types, compound walls, and applications.</p>
+                    <div class="material-card-props">
+                        <span class="material-prop">Strong</span>
+                        <span class="material-prop">Affordable</span>
+                        <span class="material-prop">Versatile</span>
+                        <span class="material-prop">Powder Coated</span>
+                    </div>
                 </div>
             </div>
             <div class="material-card">
-                <div class="material-card-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                <div class="material-card-img-wrap">
+                    <img src="assets/images/mat-stainless-steel.jpg" alt="Stainless Steel (SS) Fabrication" class="material-card-img" loading="lazy">
+                    <div class="material-card-badge-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
                 </div>
-                <h3>Aluminum</h3>
-                <p>Lightweight, naturally rust-proof, and low maintenance. Ideal for window grills, decorative panels, and modern minimalist gate designs.</p>
-                <div class="material-card-props">
-                    <span class="material-prop">Lightweight</span>
-                    <span class="material-prop">Rust-Free</span>
-                    <span class="material-prop">Low Maintenance</span>
-                    <span class="material-prop">Eco-Friendly</span>
+                <div class="material-card-body">
+                    <h3>Stainless Steel (SS)</h3>
+                    <p>Premium marine-grade material. Naturally corrosion-resistant with a lustrous finish. The first choice for coastal homes and luxury.</p>
+                    <div class="material-card-props">
+                        <span class="material-prop">Corrosion-Free</span>
+                        <span class="material-prop">Premium Look</span>
+                        <span class="material-prop">Zero Maintenance</span>
+                    </div>
+                </div>
+            </div>
+            <div class="material-card">
+                <div class="material-card-img-wrap">
+                    <img src="assets/images/mat-aluminum.jpg" alt="Aluminum Fabrication" class="material-card-img" loading="lazy">
+                    <div class="material-card-badge-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    </div>
+                </div>
+                <div class="material-card-body">
+                    <h3>Aluminum</h3>
+                    <p>Lightweight, naturally rust-proof, and low maintenance. Ideal for window grills, decorative, and modern minimalist designs.</p>
+                    <div class="material-card-props">
+                        <span class="material-prop">Lightweight</span>
+                        <span class="material-prop">Rust-Free</span>
+                        <span class="material-prop">Low Maintenance</span>
+                        <span class="material-prop">Eco-Friendly</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -483,7 +635,6 @@
                         <div class="con-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span>Rusts without proper coating</span></div>
                         <div class="con-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span>Heavier weight than aluminum</span></div>
                         <div class="con-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span>Requires repainting every 3–5 years</span></div>
-                        <div class="con-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span>Not ideal for coastal areas</span></div>
                     </div>
                 </div>
             </div>
@@ -536,64 +687,17 @@
                     <div style="margin-bottom:1.25rem;">
                         <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#16A34A;margin-bottom:0.625rem;">Advantages</p>
                         <div class="pro-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Very lightweight — easy installation</span></div>
-                        <div class="pro-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Naturally rust-proof, no coating needed</span></div>
+                        <div class="pro-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Naturally rust-proof, no coating </span></div>
                         <div class="pro-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Clean geometric patterns available</span></div>
                         <div class="pro-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Fully recyclable and eco-friendly</span></div>
                         <div class="pro-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Good for humid and coastal areas</span></div>
                     </div>
                     <div>
                         <p style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#DC2626;margin-bottom:0.625rem;">Disadvantages</p>
-                        <div class="con-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span>Lower strength than steel for heavy gates</span></div>
+                        <div class="con-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span>Lower strength than steel for gates</span></div>
                         <div class="con-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span>Limited scrollwork design options</span></div>
-                        <div class="con-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span>More expensive than MS for same size</span></div>
+                        <div class="con-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span>More expensive than MS for size</span></div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- USE CASES -->
-<section class="section bg-surface">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-tag">Recommendations</span>
-            <h2>Which Material for Your Use Case?</h2>
-            <span class="accent-line"></span>
-            <p>Our expert recommendations based on application, location, and budget.</p>
-        </div>
-        <div class="use-case-grid reveal">
-            <div class="use-case-card">
-                <span class="use-case-card-tag">Mild Steel (MS) — Best For</span>
-                <div class="use-case-list">
-                    <div class="use-case-item">Main entrance gates (swing/slide)</div>
-                    <div class="use-case-item">Window grills with ornamental patterns</div>
-                    <div class="use-case-item">Compound wall perimeter fencing</div>
-                    <div class="use-case-item">Budget-conscious homeowners</div>
-                    <div class="use-case-item">Interior spaces (low humidity)</div>
-                    <div class="use-case-item">Clients wanting 30+ design options</div>
-                </div>
-            </div>
-            <div class="use-case-card" style="border-color:rgba(180,83,9,0.2);">
-                <span class="use-case-card-tag">Stainless Steel (SS) — Best For</span>
-                <div class="use-case-list">
-                    <div class="use-case-item">Balcony and terrace railings</div>
-                    <div class="use-case-item">Interior staircases</div>
-                    <div class="use-case-item">Coastal / seaside homes</div>
-                    <div class="use-case-item">High-humidity environments</div>
-                    <div class="use-case-item">Premium modern aesthetic homes</div>
-                    <div class="use-case-item">Zero-maintenance preference</div>
-                </div>
-            </div>
-            <div class="use-case-card">
-                <span class="use-case-card-tag">Aluminum — Best For</span>
-                <div class="use-case-list">
-                    <div class="use-case-item">Window grills & ventilation panels</div>
-                    <div class="use-case-item">Decorative facade elements</div>
-                    <div class="use-case-item">Light gates for pedestrian use</div>
-                    <div class="use-case-item">Modern minimalist designs</div>
-                    <div class="use-case-item">Coastal and humid climates</div>
-                    <div class="use-case-item">Eco-conscious homeowners</div>
                 </div>
             </div>
         </div>
@@ -601,7 +705,7 @@
 </section>
 
 <!-- FAQ -->
-<section class="section">
+<section class="section bg-surface">
     <div class="container">
         <div class="section-header reveal">
             <span class="section-tag">Common Questions</span>
@@ -611,28 +715,28 @@
         <div class="faq-list reveal">
             <div class="faq-item">
                 <button class="faq-question" onclick="toggleFAQ(this)">
-                    Can I combine different materials in one project?
+                    <span>Can I combine different materials in one project?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer"><p>Yes, absolutely. Many of our premium projects combine materials — for example, an MS main gate with SS balusters, or aluminum window grills with an SS entrance railing. Our team will advise on aesthetically compatible combinations.</p></div>
             </div>
             <div class="faq-item">
                 <button class="faq-question" onclick="toggleFAQ(this)">
-                    What grade of SS do you use?
+                    <span>What grade of SS do you use?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer"><p>We use ISI-marked SS 304 grade for standard inland applications and SS 316 grade for coastal, high-humidity, or industrial environments. SS 316 has higher molybdenum content, providing superior chloride resistance for seaside homes.</p></div>
             </div>
             <div class="faq-item">
                 <button class="faq-question" onclick="toggleFAQ(this)">
-                    How long does powder coating on MS last?
+                    <span>How long does powder coating on MS last?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer"><p>Our powder-coated MS products typically last 5–8 years before requiring a touch-up or recoat. We use high-quality electrostatic powder coating at 60–80 microns thickness. We include a free touch-up kit with every MS installation.</p></div>
             </div>
             <div class="faq-item">
                 <button class="faq-question" onclick="toggleFAQ(this)">
-                    Is aluminum strong enough for main gates?
+                    <span>Is aluminum strong enough for main gates?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer"><p>Aluminum is suitable for pedestrian gates and medium-sized vehicular gates. For heavy-duty main vehicular gates (14ft+ wide), we recommend MS or SS for maximum structural integrity. Aluminum is perfect for single-leaf swing gates up to 8ft wide.</p></div>

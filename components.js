@@ -45,6 +45,7 @@ function toggleDir() {
     document.querySelectorAll('.dir-label').forEach(el => {
         el.textContent = isRTL ? 'LTR' : 'RTL';
     });
+    window.dispatchEvent(new CustomEvent('dirchange', { detail: { dir: isRTL ? 'ltr' : 'rtl' } }));
 }
 
 /* ─── LOGO SVG ───────────────────────────────────────────── */

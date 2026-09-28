@@ -220,7 +220,61 @@
             align-items: center;
             width: 100%;
         }
-        @media (max-width: 768px) { .premium-hero-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+        @media (max-width: 900px) { 
+            .premium-hero {
+                min-height: auto;
+                height: auto;
+                display: block;
+                padding: 5.5rem 0 3rem;
+                overflow: visible;
+            }
+            .premium-hero-grid { 
+                grid-template-columns: 1fr; 
+                gap: 2rem; 
+                text-align: center;
+            } 
+            .premium-hero-left {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                margin: 0 auto;
+            }
+            .premium-hero-left h1 {
+                text-align: center;
+                font-size: clamp(1.75rem, 5vw, 2.25rem);
+            }
+            .premium-hero-left p {
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+                font-size: 0.95rem;
+                line-height: 1.6;
+                margin-bottom: 1.25rem;
+            }
+            .premium-hero-left .hero-badge {
+                align-self: center;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .premium-hero-left div[style*="display:flex"],
+            .premium-hero-left div[style*="display: flex"] {
+                justify-content: center !important;
+                text-align: center;
+            }
+            .premium-hero-right {
+                width: 100%;
+                max-width: 480px;
+                margin: 0 auto;
+            }
+            .premium-hero-left .btn {
+                padding: 0.85rem 1.4rem;
+                font-size: 0.9rem;
+            }
+            .premium-controls {
+                margin-top: 2rem;
+            }
+        }
         .premium-hero-left h1 { color: var(--text-heading); margin-bottom: 0.875rem; font-size: clamp(1.95rem, 4.2vw, 3.1rem); line-height: 1.16; transition: color 0.3s ease; }
         .dark .premium-hero-left h1 { color: #fff; }
         .premium-hero-left p { color: var(--text-body); font-size: 1rem; margin-bottom: 1.65rem; max-width: 500px; transition: color 0.3s ease; line-height: 1.65; }
@@ -764,11 +818,13 @@
             max-width: 1140px;
             margin: 0 auto;
             overflow: hidden;
+            direction: ltr;
         }
         .h2-testi-track {
             display: flex;
             transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
             will-change: transform;
+            direction: ltr;
         }
         .h2-testi-slide {
             flex: 0 0 100%;
@@ -777,6 +833,11 @@
             gap: 1.75rem;
             box-sizing: border-box;
             padding: 0.5rem 0.25rem 1.5rem;
+            direction: ltr;
+        }
+        [dir="rtl"] .h2-testi-card {
+            direction: rtl;
+            text-align: right;
         }
         .h2-testi-card {
             background: var(--bg-card);
@@ -925,6 +986,9 @@
             border-color: rgba(245, 158, 11, 0.25);
             color: #FDE68A;
         }
+        [dir="rtl"] .h2-testi-btn svg {
+            transform: scaleX(-1);
+        }
         .h2-testi-btn:hover {
             background: var(--primary);
             border-color: var(--primary);
@@ -974,6 +1038,35 @@
             }
             .h2-testi-card {
                 padding: 1.75rem 1.5rem;
+            }
+        }
+
+        /* Material Overview Cards */
+        .h2-mat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.875rem;
+            margin-bottom: 1.75rem;
+        }
+        .h2-mat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-lg);
+            padding: 1rem 1.15rem;
+        }
+        .h2-mat-card h4 {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+        .h2-mat-card p {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+        @media (max-width: 600px) {
+            .h2-mat-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -1411,29 +1504,29 @@
             <span class="accent-line"></span>
         </div>
 
-        <div class="split-section reveal" style="gap: 3rem; align-items: center; margin-bottom: 2rem;">
-            <div class="split-img" style="border: 1px solid var(--border-default); box-shadow: var(--shadow-lg); border-radius: var(--radius-2xl); max-height: 380px; aspect-ratio: 4/3; overflow: hidden;">
-                <img src="assets/images/home2-materials.jpg" alt="Precision metalwork materials and finishes" style="width: 100%; height: 100%; max-height: 380px; object-fit: cover;">
+        <div class="split-section reveal" style="gap: 3rem; margin-bottom: 2rem;">
+            <div class="split-img">
+                <img src="assets/images/home2-materials.jpg" alt="Precision metalwork materials and finishes">
             </div>
             <div class="split-content">
                 <p style="color: var(--text-body); margin-bottom: 1.25rem; font-size: 1.05rem; line-height: 1.7;">We source only virgin raw materials from certified steel mills. Every section undergoes multi-stage anti-corrosion chemical treatment followed by thermal powder coating or electro-polishing.</p>
                 
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.875rem; margin-bottom: 1.75rem;">
-                    <div style="background: var(--bg-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 1rem 1.15rem;">
-                        <h4 style="color: var(--primary); font-size: 0.9rem; margin-bottom: 0.25rem;">MS IS:2062 Grade A</h4>
-                        <p style="font-size: 0.78rem; color: var(--text-muted); margin: 0;">Structural mild steel with zinc-rich primer &amp; powder coat.</p>
+                <div class="h2-mat-grid">
+                    <div class="h2-mat-card">
+                        <h4>MS IS:2062 Grade A</h4>
+                        <p>Structural mild steel with zinc-rich primer &amp; powder.</p>
                     </div>
-                    <div style="background: var(--bg-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 1rem 1.15rem;">
-                        <h4 style="color: var(--primary); font-size: 0.9rem; margin-bottom: 0.25rem;">SS 304 &amp; 316 Marine</h4>
-                        <p style="font-size: 0.78rem; color: var(--text-muted); margin: 0;">100% rust-proof stainless steel for coastal longevity.</p>
+                    <div class="h2-mat-card">
+                        <h4>SS 304 &amp; 316 Marine</h4>
+                        <p>100% rust-proof stainless steel for coastal longevity.</p>
                     </div>
-                    <div style="background: var(--bg-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 1rem 1.15rem;">
-                        <h4 style="color: var(--primary); font-size: 0.9rem; margin-bottom: 0.25rem;">6063-T6 Aluminum</h4>
-                        <p style="font-size: 0.78rem; color: var(--text-muted); margin: 0;">Lightweight, naturally corrosion-free alloy for CNC designs.</p>
+                    <div class="h2-mat-card">
+                        <h4>6063-T6 Aluminum</h4>
+                        <p>Lightweight, naturally corrosion-free alloy for CNC.</p>
                     </div>
-                    <div style="background: var(--bg-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 1rem 1.15rem;">
-                        <h4 style="color: var(--primary); font-size: 0.9rem; margin-bottom: 0.25rem;">7-Stage Treatment</h4>
-                        <p style="font-size: 0.78rem; color: var(--text-muted); margin: 0;">Degreasing, phosphating, zinc base, and 200°C baked finish.</p>
+                    <div class="h2-mat-card">
+                        <h4>7-Stage Treatment</h4>
+                        <p>Degreasing, phosphating, zinc base, and 200°C baked finish.</p>
                     </div>
                 </div>
 
@@ -1475,11 +1568,11 @@
                                     Verified
                                 </span>
                             </div>
-                            <p class="h2-testi-quote">"Renewed our entire entrance with a bespoke CNC laser-cut sliding gate. The millimeter precision, stone pillar mounting, and flawless automated motor integration were truly impressive!"</p>
+                            <p class="h2-testi-quote">"Renewed our entire entrance with a bespoke CNC laser-cut sliding gate. The millimeter precision, stone pillar, and flawless automated motor integration were truly impressive!"</p>
                         </div>
                         <div class="h2-testi-footer">
                             <div class="h2-testi-author-wrap">
-                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80" alt="Anitha R." class="h2-testi-avatar" loading="lazy">
+                                <img src="assets/images/profile/client_sarah.png" alt="Anitha R." class="h2-testi-avatar" loading="lazy">
                                 <div class="h2-testi-author-info">
                                     <h4>Anitha R.</h4>
                                     <p>CNC Laser Gate • Anna Nagar, Chennai</p>
@@ -1510,7 +1603,7 @@
                         </div>
                         <div class="h2-testi-footer">
                             <div class="h2-testi-author-wrap">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80" alt="Pradeep V." class="h2-testi-avatar" loading="lazy">
+                                <img src="assets/images/profile/team_james.png" alt="Pradeep V." class="h2-testi-avatar" loading="lazy">
                                 <div class="h2-testi-author-info">
                                     <h4>Pradeep V.</h4>
                                     <p>Marine SS 316 Railings • ECR, Chennai</p>
@@ -1544,7 +1637,7 @@
                         </div>
                         <div class="h2-testi-footer">
                             <div class="h2-testi-author-wrap">
-                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80" alt="Meenakshi Ramesh" class="h2-testi-avatar" loading="lazy">
+                                <img src="assets/images/profile/team_maria.png" alt="Meenakshi Ramesh" class="h2-testi-avatar" loading="lazy">
                                 <div class="h2-testi-author-info">
                                     <h4>Meenakshi Ramesh</h4>
                                     <p>Heritage Ornamental Gate • RS Puram, Coimbatore</p>
@@ -1575,7 +1668,7 @@
                         </div>
                         <div class="h2-testi-footer">
                             <div class="h2-testi-author-wrap">
-                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80" alt="Suresh Krishnan" class="h2-testi-avatar" loading="lazy">
+                                <img src="assets/images/profile/client_robert.png" alt="Suresh Krishnan" class="h2-testi-avatar" loading="lazy">
                                 <div class="h2-testi-author-info">
                                     <h4>Suresh Krishnan</h4>
                                     <p>Custom MS Sliding Gate • Madurai</p>
@@ -1609,7 +1702,7 @@
                         </div>
                         <div class="h2-testi-footer">
                             <div class="h2-testi-author-wrap">
-                                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80" alt="Deepa Sundaram" class="h2-testi-avatar" loading="lazy">
+                                <img src="assets/images/profile/client_ana.png" alt="Deepa Sundaram" class="h2-testi-avatar" loading="lazy">
                                 <div class="h2-testi-author-info">
                                     <h4>Deepa Sundaram</h4>
                                     <p>Aluminum Louver Grills • Trichy</p>
@@ -1640,7 +1733,7 @@
                         </div>
                         <div class="h2-testi-footer">
                             <div class="h2-testi-author-wrap">
-                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80" alt="Karthik Narayanan" class="h2-testi-avatar" loading="lazy">
+                                <img src="assets/images/profile/team_david.png" alt="Karthik Narayanan" class="h2-testi-avatar" loading="lazy">
                                 <div class="h2-testi-author-info">
                                     <h4>Karthik Narayanan</h4>
                                     <p>Designer Spiral Staircase • Salem</p>
@@ -1687,7 +1780,7 @@
         <div class="faq-list reveal" style="max-width: 860px; margin: 0 auto;">
             <div class="faq-item">
                 <button class="faq-question" onclick="toggleFAQ(this)">
-                    Do you provide custom 3D CAD design drawings before fabrication?
+                    <span>Do you provide custom 3D CAD design drawings before fabrication?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
@@ -1697,7 +1790,7 @@
 
             <div class="faq-item">
                 <button class="faq-question" onclick="toggleFAQ(this)">
-                    How do you protect mild steel (MS) gates and grills from rusting?
+                    <span>How do you protect mild steel (MS) gates and grills from rusting?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
@@ -1707,7 +1800,7 @@
 
             <div class="faq-item">
                 <button class="faq-question" onclick="toggleFAQ(this)">
-                    Can automatic gate motors and smart access control be added?
+                    <span>Can automatic gate motors and smart access control be added?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
@@ -1717,7 +1810,7 @@
 
             <div class="faq-item">
                 <button class="faq-question" onclick="toggleFAQ(this)">
-                    What is the typical timeframe from site visit to final installation?
+                    <span>What is the typical timeframe from site visit to final installation?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
@@ -1727,7 +1820,7 @@
 
             <div class="faq-item">
                 <button class="faq-question" onclick="toggleFAQ(this)">
-                    What warranty and post-installation maintenance do you offer?
+                    <span>What warranty and post-installation maintenance do you offer?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
@@ -1922,7 +2015,7 @@
         function startAutoPlay() {
             autoPlayTimer = setInterval(() => {
                 updateSlide(currentSlide + 1);
-            }, 6000);
+            }, 5000);
         }
 
         function resetAutoPlay() {
@@ -1938,6 +2031,10 @@
             wrapper.addEventListener('mouseenter', () => clearInterval(autoPlayTimer));
             wrapper.addEventListener('mouseleave', () => startAutoPlay());
         }
+
+        window.addEventListener('dirchange', () => {
+            updateSlide(currentSlide);
+        });
     })();
 
     // FAQ Toggle Handler

@@ -25,11 +25,103 @@
         .breadcrumb span { color:rgba(255,255,255,0.3); }
         .breadcrumb-current { color:var(--primary); font-weight:600; }
         .service-badge { display:inline-flex; align-items:center; gap:0.4rem; background:rgba(180,83,9,0.15); border:1px solid rgba(180,83,9,0.3); border-radius:var(--radius-full); padding:0.35rem 0.875rem; font-size:0.75rem; font-weight:600; color:var(--primary); margin-right:0.5rem; margin-bottom:0.5rem; }
-        .step-track { display:flex; gap:0; }
-        .step-item { display:flex; flex-direction:column; align-items:center; flex:1; position:relative; text-align:center; }
-        .step-item:not(:last-child)::after { content:''; position:absolute; top:18px; left:50%; right:-50%; height:2px; background:var(--border-default); z-index:0; }
-        .step-dot { width:36px; height:36px; background:var(--primary); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Sora',sans-serif; font-weight:700; font-size:0.85rem; color:#fff; position:relative; z-index:1; margin-bottom:0.75rem; box-shadow:0 0 0 3px rgba(180,83,9,0.15); }
-        .step-label { font-size:0.75rem; font-weight:600; color:var(--text-body); }
+        .step-track { 
+            display: flex; 
+            align-items: flex-start; 
+            justify-content: space-between; 
+            position: relative; 
+            max-width: 850px; 
+            margin: 0 auto; 
+            width: 100%;
+        }
+        .step-item { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            flex: 1; 
+            position: relative; 
+            text-align: center; 
+            padding: 0 0.25rem; 
+        }
+        .step-item:not(:last-child)::after { 
+            content: ''; 
+            position: absolute; 
+            top: 19px; 
+            left: 50%; 
+            width: 100%; 
+            height: 2px; 
+            background: var(--border-default); 
+            z-index: 0; 
+        }
+        .step-dot { 
+            width: 38px; 
+            height: 38px; 
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%); 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-family: 'Sora', sans-serif; 
+            font-weight: 700; 
+            font-size: 0.85rem; 
+            color: #fff; 
+            position: relative; 
+            z-index: 1; 
+            margin-bottom: 0.65rem; 
+            box-shadow: 0 0 0 3px var(--bg-surface), 0 0 0 4px rgba(180, 83, 9, 0.2); 
+            transition: transform 0.2s ease;
+        }
+        .step-label { 
+            font-size: 0.775rem; 
+            font-weight: 600; 
+            color: var(--text-heading); 
+            line-height: 1.25; 
+            text-align: center;
+        }
+
+        [dir="rtl"] .step-item:not(:last-child)::after {
+            left: auto;
+            right: 50%;
+        }
+
+        @media (max-width: 600px) {
+            .step-track {
+                padding: 0.25rem 0;
+            }
+            .step-item {
+                padding: 0 2px;
+            }
+            .step-item:not(:last-child)::after {
+                top: 15px;
+            }
+            .step-dot {
+                width: 30px;
+                height: 30px;
+                font-size: 0.75rem;
+                margin-bottom: 0.45rem;
+                box-shadow: 0 0 0 2px var(--bg-surface), 0 0 0 3px rgba(180, 83, 9, 0.2);
+            }
+            .step-label {
+                font-size: 0.65rem;
+                letter-spacing: -0.01em;
+                line-height: 1.2;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .step-dot {
+                width: 28px;
+                height: 28px;
+                font-size: 0.7rem;
+                margin-bottom: 0.35rem;
+            }
+            .step-item:not(:last-child)::after {
+                top: 14px;
+            }
+            .step-label {
+                font-size: 0.6rem;
+            }
+        }
         .success-msg { display:none; background:#DCFCE7; border:1px solid #16A34A; border-radius:var(--radius-lg); padding:1.25rem 1.5rem; color:#16A34A; font-size:0.9rem; font-weight:600; align-items:center; gap:0.75rem; margin-top:1rem; }
         .success-msg.show { display:flex; }
         .required-star { color:#DC2626; }
@@ -126,7 +218,7 @@
                         </div>
                         <div>
                             <strong>Working Hours</strong>
-                            <span>Mon – Sat: 8:00 AM – 7:00 PM<br>Sunday: Closed</span>
+                            <span> 8:00 AM – 7:00 PM<br>Sunday: Closed</span>
                         </div>
                     </div>
                 </div>

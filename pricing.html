@@ -35,16 +35,49 @@
         .price-range-label { font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-muted); margin-bottom:0.25rem; }
         .price-range-title { font-size:1rem; font-weight:600; color:var(--text-heading); margin-bottom:0.375rem; }
         .price-range-value { font-family:'Sora',sans-serif; font-size:1.5rem; font-weight:700; color:var(--primary); line-height:1; }
-        .price-range-sub { font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem; }
-        .pricing-breakdown-table { width:100%; border-collapse:collapse; }
-        .pricing-breakdown-table th { background:var(--secondary); color:#fff; font-size:0.8rem; font-weight:600; padding:0.875rem 1.25rem; text-align:left; letter-spacing:0.04em; }
-        .pricing-breakdown-table td { padding:0.875rem 1.25rem; font-size:0.875rem; border-bottom:1px solid var(--border-light); vertical-align:middle; }
-        .pricing-breakdown-table tbody tr:last-child td { border-bottom:none; }
-        .pricing-breakdown-table tbody tr:nth-child(even) { background:var(--bg-surface); }
-        .pricing-breakdown-table tbody tr:hover { background:var(--primary-subtle); }
-        .addon-card { background:var(--bg-card); border:1px solid var(--border-default); border-radius:var(--radius-lg); padding:1.25rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; transition:var(--transition-fast); }
-        .addon-card:hover { border-color:rgba(180,83,9,0.2); background:var(--primary-subtle); }
-        .addon-price { font-family:'Sora',sans-serif; font-weight:700; color:var(--primary); font-size:1rem; white-space:nowrap; }
+        .addon-card { 
+            background: var(--bg-card); 
+            border: 1px solid var(--border-default); 
+            border-radius: var(--radius-lg); 
+            padding: 1.25rem 1.5rem; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            gap: 1.25rem; 
+            transition: var(--transition-fast); 
+            box-shadow: var(--shadow-sm);
+        }
+        .addon-card:hover { 
+            border-color: rgba(180,83,9,0.3); 
+            background: var(--primary-subtle); 
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-card);
+        }
+        .addon-price { 
+            font-family: 'Sora', sans-serif; 
+            font-weight: 700; 
+            color: var(--primary); 
+            font-size: 1.05rem; 
+            white-space: nowrap; 
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 640px) {
+            .addon-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.65rem;
+                padding: 1.15rem 1.25rem;
+            }
+            .addon-price {
+                font-size: 0.95rem;
+                color: var(--primary);
+                background: rgba(180, 83, 9, 0.12);
+                border: 1px solid rgba(180, 83, 9, 0.22);
+                padding: 0.25rem 0.65rem;
+                border-radius: var(--radius-md);
+            }
+        }
     </style>
 </head>
 <body>
@@ -82,7 +115,7 @@
                     <span class="amount">8,500</span>
                 </div>
                 <div class="pricing-period">Starting price — per unit / installation</div>
-                <p class="pricing-desc">Our entry-level package for standard residential window grills and small pedestrian gates. Mild Steel with powder coating.</p>
+                <p class="pricing-desc">Our entry-level package for standard residential window grills and small gates. Mild Steel with powder coating.</p>
                 <div class="pricing-features">
                     <div class="pricing-feature">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
@@ -163,7 +196,7 @@
                     <span class="amount">85,000</span>
                 </div>
                 <div class="pricing-period">Starting price — complete boundary system</div>
-                <p class="pricing-desc">Our comprehensive estate package covering the full boundary — compound wall, main gate, wicket gate, and fence topper.</p>
+                <p class="pricing-desc">Our comprehensive estate package covering the full boundary — compound wall, main gate, and fence topper.</p>
                 <div class="pricing-features">
                     <div class="pricing-feature">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
@@ -200,108 +233,8 @@
     </div>
 </section>
 
-<!-- PRICE RANGES -->
-<section class="section bg-surface">
-    <div class="container">
-        <div class="section-header reveal">
-            <span class="section-tag">Price Ranges</span>
-            <h2>Indicative Price List</h2>
-            <span class="accent-line"></span>
-        </div>
-        <div class="price-note reveal">
-            <svg class="price-note-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            <p><strong>Note:</strong> These are indicative price ranges based on standard sizes and complexity. Final pricing depends on exact dimensions, material grade, design complexity, and location. All prices include fabrication, powder coating / finishing, and installation. GST extra.</p>
-        </div>
-        <div style="overflow-x:auto;border-radius:var(--radius-xl);box-shadow:var(--shadow-md);border:1px solid var(--border-default);" class="reveal">
-            <table class="pricing-breakdown-table">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Material</th>
-                        <th>Standard Size</th>
-                        <th>Price Range (₹)</th>
-                        <th>Timeline</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Window Grill</strong></td>
-                        <td>MS (Powder Coated)</td>
-                        <td>3ft × 4ft</td>
-                        <td>₹ 2,500 – 5,500</td>
-                        <td>3–5 days</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Window Grill</strong></td>
-                        <td>Aluminum</td>
-                        <td>3ft × 4ft</td>
-                        <td>₹ 3,800 – 6,500</td>
-                        <td>4–6 days</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Pedestrian Gate</strong></td>
-                        <td>MS (Single Leaf)</td>
-                        <td>3ft × 6ft</td>
-                        <td>₹ 8,000 – 14,000</td>
-                        <td>7–10 days</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Sliding Main Gate</strong></td>
-                        <td>MS (Double Leaf)</td>
-                        <td>12ft × 6ft</td>
-                        <td>₹ 22,000 – 42,000</td>
-                        <td>10–14 days</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Sliding Main Gate</strong></td>
-                        <td>Aluminum</td>
-                        <td>12ft × 6ft</td>
-                        <td>₹ 32,000 – 55,000</td>
-                        <td>12–16 days</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Ornamental Swing Gate</strong></td>
-                        <td>MS (Double Panel)</td>
-                        <td>14ft × 7ft</td>
-                        <td>₹ 35,000 – 75,000</td>
-                        <td>14–21 days</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Balcony Railing</strong></td>
-                        <td>SS 304</td>
-                        <td>Per linear foot</td>
-                        <td>₹ 950 – 1,800 /ft</td>
-                        <td>7–12 days</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Staircase Railing</strong></td>
-                        <td>MS (Decorative)</td>
-                        <td>Per linear foot</td>
-                        <td>₹ 650 – 1,200 /ft</td>
-                        <td>7–10 days</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Compound Fence Topper</strong></td>
-                        <td>MS (Spike/Scroll)</td>
-                        <td>Per linear foot</td>
-                        <td>₹ 180 – 450 /ft</td>
-                        <td>5–8 days</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Motorized Gate</strong></td>
-                        <td>MS + Automation Kit</td>
-                        <td>12–16ft width</td>
-                        <td>₹ 55,000 – 1,20,000</td>
-                        <td>14–21 days</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</section>
-
 <!-- ADD-ONS -->
-<section class="section">
+<section class="section bg-surface">
     <div class="container">
         <div class="section-header reveal">
             <span class="section-tag">Add-Ons</span>
@@ -404,28 +337,28 @@
         <div class="faq-list reveal">
             <div class="faq-item">
                 <button class="faq-question" onclick="toggleFAQ(this)">
-                    Are the prices on this page final?
+                    <span>Are the prices on this page final?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer"><p>No — these are indicative ranges. Your final quote depends on exact dimensions, design complexity, material grade, and site conditions. We provide a free, detailed quote after our site visit.</p></div>
             </div>
             <div class="faq-item">
                 <button class="faq-question" onclick="toggleFAQ(this)">
-                    Does the price include GST?
+                    <span>Does the price include GST?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer"><p>All prices shown are exclusive of GST. Applicable GST rates are 18% on fabrication services. Your itemized quotation will clearly show the pre-GST and post-GST totals.</p></div>
             </div>
             <div class="faq-item">
                 <button class="faq-question" onclick="toggleFAQ(this)">
-                    What is the payment schedule?
+                    <span>What is the payment schedule?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer"><p>Our standard payment schedule: 40% advance on order confirmation, 40% before installation begins, and 20% upon satisfactory completion. We accept cash, UPI, NEFT/RTGS, and cheques.</p></div>
             </div>
             <div class="faq-item">
                 <button class="faq-question" onclick="toggleFAQ(this)">
-                    Is transportation / delivery included?
+                    <span>Is transportation / delivery included?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer"><p>Yes — for projects within 60km of our workshop, transportation is included in the quoted price. For projects beyond 60km, a transportation surcharge may apply and will be clearly stated in your quotation.</p></div>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" id="root-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IronCraft Products — Browse our full range of custom MS gates, SS railings, aluminum grills, window guards, and compound walls. Premium fabrication for every home.">
+    <title>Products — IronCraft Gate & Grill Fabrication</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-hero { background:var(--secondary); padding:6rem 0 5rem; position:relative; overflow:hidden; }
+        .page-hero::before { content:''; position:absolute; top:-60px; right:-60px; width:400px; height:400px; background:radial-gradient(circle, rgba(180,83,9,0.12) 0%, transparent 70%); border-radius:50%; pointer-events:none; }
+        .page-hero h1 { color:#fff; margin-bottom:1rem; }
+        .page-hero p { color:rgba(255,255,255,0.65); max-width:560px; font-size:1.05rem; }
+        .breadcrumb { display:flex; align-items:center; gap:0.5rem; margin-bottom:1.5rem; font-size:0.825rem; }
+        .breadcrumb a { color:rgba(255,255,255,0.5); transition:color 0.2s; }
+        .breadcrumb a:hover { color:var(--primary); }
+        .breadcrumb span { color:rgba(255,255,255,0.3); }
+        .breadcrumb-current { color:var(--primary); font-weight:600; }
+        .product-detail-section { padding:5rem 0; }
+        .product-detail-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; margin-bottom:4rem; }
+        .product-detail-grid.reverse { direction:rtl; }
+        .product-detail-grid.reverse > * { direction:ltr; }
+        @media (max-width:768px) { .product-detail-grid { grid-template-columns:1fr; gap:2rem; } .product-detail-grid.reverse { direction:ltr; } }
+        .product-detail-img { border-radius:1.25rem; overflow:hidden; aspect-ratio:4/3; }
+        .product-detail-img img { width:100%; height:100%; object-fit:cover; }
+        .product-specs { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin:1.25rem 0 1.75rem; }
+        .product-spec { background:var(--bg-surface); border:1px solid var(--border-default); border-radius:var(--radius-md); padding:0.75rem 1rem; }
+        .product-spec-label { font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-muted); margin-bottom:0.25rem; }
+        .product-spec-val { font-size:0.875rem; font-weight:600; color:var(--text-heading); }
+        .product-number { font-family:'Sora',sans-serif; font-size:5rem; font-weight:700; color:var(--primary); opacity:0.08; position:absolute; top:-1rem; left:-0.5rem; line-height:1; pointer-events:none; }
+        .product-anchor-section { position:relative; overflow:visible; }
+        .divider-line { border:none; border-top:1px solid var(--border-default); margin:0; }
+        .compare-strip { background:var(--primary); border-radius:var(--radius-xl); padding:2rem 2.5rem; display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap; }
+        .compare-strip h3 { color:#fff; font-size:1.25rem; margin-bottom:0.25rem; }
+        .compare-strip p { color:rgba(255,255,255,0.75); font-size:0.875rem; }
+    </style>
+</head>
+<body>
+
+<div id="main-nav"></div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span>&rsaquo;</span>
+            <span class="breadcrumb-current">Products</span>
+        </div>
+        <h1>Our Product Range</h1>
+        <p>Custom-fabricated metalwork for every part of your home. From entrance gates to window grills — every product made to your specifications.</p>
+    </div>
+</div>
+
+<!-- PRODUCT 1: MS GATES -->
+<section class="product-detail-section product-anchor-section" id="ms-gates">
+    <div class="container">
+        <div class="product-detail-grid reveal">
+            <div class="product-detail-img">
+                <img src="assets/images/ms-steel-gate.jpg" alt="Mild Steel Gate Collection">
+            </div>
+            <div style="position:relative;">
+                <div class="product-number">01</div>
+                <span class="section-tag">Mild Steel</span>
+                <h2 style="margin-top:0.5rem;">MS Gates — Swing & Slide</h2>
+                <span class="accent-line"></span>
+                <p>Our best-selling category — Mild Steel gates are the go-to choice for homeowners seeking durability and affordability. Available in swing, sliding, and folding configurations with 30+ design patterns.</p>
+                <p>All MS gates receive a comprehensive rust-proofing treatment followed by high-quality powder coating in your choice of color. We use minimum 1.5mm thick MS sections for structural integrity.</p>
+                <div class="product-specs">
+                    <div class="product-spec">
+                        <div class="product-spec-label">Material Grade</div>
+                        <div class="product-spec-val">MS IS:2062 Grade A</div>
+                    </div>
+                    <div class="product-spec">
+                        <div class="product-spec-label">Thickness</div>
+                        <div class="product-spec-val">1.5mm – 3mm</div>
+                    </div>
+                    <div class="product-spec">
+                        <div class="product-spec-label">Finish Options</div>
+                        <div class="product-spec-val">Powder Coat, Paint</div>
+                    </div>
+                    <div class="product-spec">
+                        <div class="product-spec-label">Warranty</div>
+                        <div class="product-spec-val">5 Years</div>
+                    </div>
+                </div>
+                <div class="feature-list" style="margin-bottom:1.75rem;">
+                    <div class="feature-item">
+                        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div class="feature-text"><h4>Swing, Sliding, Folding</h4><p>All gate mechanisms available with motorized automation option.</p></div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div class="feature-text"><h4>30+ Patterns Available</h4><p>Ornamental, horizontal, vertical, geometric and custom designs.</p></div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div class="feature-text"><h4>Any Color</h4><p>Full powder coat palette with RAL color matching available.</p></div>
+                    </div>
+                </div>
+                <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+                    <a href="contact.html" class="btn btn-primary btn-lg">Get Quote</a>
+                    <a href="pricing.html" class="btn btn-secondary btn-lg">View Pricing</a>
+                </div>
+            </div>
+        </div>
+        <hr class="divider-line">
+    </div>
+</section>
+
+<!-- PRODUCT 2: SS RAILINGS -->
+<section class="product-detail-section product-anchor-section bg-surface" id="ss-railings">
+    <div class="container">
+        <div class="product-detail-grid reverse reveal">
+            <div class="product-detail-img">
+                <img src="assets/images/ss-railing.jpg" alt="Stainless Steel Railings">
+            </div>
+            <div style="position:relative;">
+                <div class="product-number">02</div>
+                <span class="section-tag">Stainless Steel</span>
+                <h2 style="margin-top:0.5rem;">SS Railings & Balustrades</h2>
+                <span class="accent-line"></span>
+                <p>Sleek, modern stainless steel railings that combine safety with sophisticated aesthetics. Choose from tubular SS, cable-wire, glass-insert, and design-panel options for balconies, terraces, and staircases.</p>
+                <p>We use ISI-marked SS 304 (inland) and SS 316 (coastal/high-humidity) grade steel. All welds are TIG-welded for clean, strong joints. Mirror or brushed finish available.</p>
+                <div class="product-specs">
+                    <div class="product-spec">
+                        <div class="product-spec-label">Grade Options</div>
+                        <div class="product-spec-val">SS 304 / SS 316</div>
+                    </div>
+                    <div class="product-spec">
+                        <div class="product-spec-label">Finish</div>
+                        <div class="product-spec-val">Mirror / Brushed</div>
+                    </div>
+                    <div class="product-spec">
+                        <div class="product-spec-label">Weld Type</div>
+                        <div class="product-spec-val">TIG Welded</div>
+                    </div>
+                    <div class="product-spec">
+                        <div class="product-spec-label">Warranty</div>
+                        <div class="product-spec-val">5 Years</div>
+                    </div>
+                </div>
+                <div class="feature-list" style="margin-bottom:1.75rem;">
+                    <div class="feature-item">
+                        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div class="feature-text"><h4>Coastal Grade Available</h4><p>SS 316 grade recommended for seaside and high-humidity environments.</p></div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div class="feature-text"><h4>Glass Panel Option</h4><p>Toughened glass inserts available for a premium frameless railing look.</p></div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div class="feature-text"><h4>Zero Maintenance</h4><p>Stainless steel never needs painting or coating. Wipe-clean surface.</p></div>
+                    </div>
+                </div>
+                <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+                    <a href="contact.html" class="btn btn-primary btn-lg">Get Quote</a>
+                    <a href="materials.html" class="btn btn-secondary btn-lg">SS vs MS Comparison</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRODUCT 3: ALUMINUM GRILLS -->
+<section class="product-detail-section product-anchor-section" id="aluminum-grills">
+    <div class="container">
+        <div class="product-detail-grid reveal">
+            <div class="product-detail-img">
+                <img src="assets/images/aluminum-grill.jpg" alt="Aluminum Decorative Grills">
+            </div>
+            <div style="position:relative;">
+                <div class="product-number">03</div>
+                <span class="section-tag">Aluminum</span>
+                <h2 style="margin-top:0.5rem;">Aluminum Decorative Grills</h2>
+                <span class="accent-line"></span>
+                <p>Aluminum grills offer the perfect balance of aesthetics, durability, and value. Being naturally rust-proof and lightweight, they're ideal for windows, ventilation openings, and decorative facade panels.</p>
+                <p>Available in extruded aluminum profiles with anodized or powder-coated finish. Our geometric and floral patterns are pre-designed and can be combined to create unique custom layouts.</p>
+                <div class="product-specs">
+                    <div class="product-spec">
+                        <div class="product-spec-label">Alloy Grade</div>
+                        <div class="product-spec-val">6063 / 6061 Aluminum</div>
+                    </div>
+                    <div class="product-spec">
+                        <div class="product-spec-label">Finish</div>
+                        <div class="product-spec-val">Anodized / Powder Coat</div>
+                    </div>
+                    <div class="product-spec">
+                        <div class="product-spec-label">Weight</div>
+                        <div class="product-spec-val">1/3 of Steel</div>
+                    </div>
+                    <div class="product-spec">
+                        <div class="product-spec-label">Warranty</div>
+                        <div class="product-spec-val">5 Years</div>
+                    </div>
+                </div>
+                <div class="feature-list" style="margin-bottom:1.75rem;">
+                    <div class="feature-item">
+                        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div class="feature-text"><h4>Naturally Rust-Free</h4><p>Aluminum forms its own protective oxide layer — no painting needed.</p></div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div class="feature-text"><h4>20+ Design Patterns</h4><p>Diamond, lattice, floral, modern geometric, and traditional patterns.</p></div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div class="feature-text"><h4>Easy Installation</h4><p>Lightweight panels install faster, reducing on-site time and disruption.</p></div>
+                    </div>
+                </div>
+                <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+                    <a href="contact.html" class="btn btn-primary btn-lg">Get Quote</a>
+                    <a href="gallery.html" class="btn btn-secondary btn-lg">See Gallery</a>
+                </div>
+            </div>
+        </div>
+        <hr class="divider-line">
+    </div>
+</section>
+
+<!-- PRODUCT 4 & 5 CARDS -->
+<section class="product-detail-section bg-surface" id="window-guards">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag">More Products</span>
+            <h2>Window Guards & Compound Walls</h2>
+            <span class="accent-line"></span>
+        </div>
+        <div class="product-grid reveal">
+            <div class="product-card">
+                <div class="product-card-img-wrap">
+                    <img src="assets/images/window-grill.jpg" alt="Decorative Window Guards" class="product-card-img">
+                </div>
+                <div class="product-card-body">
+                    <span class="card-tag">Security &amp; Aesthetics</span>
+                    <h3>Decorative Window Guards</h3>
+                    <p>Security grills that double as decorative elements. Available in MS, SS, and aluminum. Diamond, floral, and colonial patterns. Custom sizes to fit any window opening.</p>
+                    <div class="product-specs" style="margin:1rem 0;">
+                        <div class="product-spec"><div class="product-spec-label">Materials</div><div class="product-spec-val">MS / SS / Aluminum</div></div>
+                        <div class="product-spec"><div class="product-spec-label">Patterns</div><div class="product-spec-val">15+ Designs</div></div>
+                    </div>
+                    <a href="contact.html" class="btn btn-primary btn-sm">Get Quote</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-card-img-wrap">
+                    <img src="assets/images/compound-wall.jpg" alt="Compound Wall Gate System" class="product-card-img">
+                </div>
+                <div class="product-card-body">
+                    <span class="card-tag">Boundary Security</span>
+                    <h3>Compound Wall Systems</h3>
+                    <p>Complete boundary solutions combining masonry or precast walls with integrated metalwork gates, decorative fence toppers, pillar caps, and perimeter lighting integration.</p>
+                    <div class="product-specs" style="margin:1rem 0;">
+                        <div class="product-spec"><div class="product-spec-label">Gate Type</div><div class="product-spec-val">Sliding / Swing</div></div>
+                        <div class="product-spec"><div class="product-spec-label">Integration</div><div class="product-spec-val">Full System</div></div>
+                    </div>
+                    <a href="contact.html" class="btn btn-primary btn-sm">Get Quote</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-card-img-wrap">
+                    <img src="assets/images/staircase-railing.jpg" alt="Interior Staircase Railing" class="product-card-img">
+                </div>
+                <div class="product-card-body">
+                    <span class="card-tag">Interior</span>
+                    <h3>Staircase Railings</h3>
+                    <p>Interior staircase railings in MS, SS, or aluminum. Wrought iron classic designs, modern glass-panel options, and contemporary cable railings available.</p>
+                    <div class="product-specs" style="margin:1rem 0;">
+                        <div class="product-spec"><div class="product-spec-label">Style</div><div class="product-spec-val">Classic / Modern</div></div>
+                        <div class="product-spec"><div class="product-spec-label">Materials</div><div class="product-spec-val">MS / SS / Al</div></div>
+                    </div>
+                    <a href="contact.html" class="btn btn-primary btn-sm">Get Quote</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- COMPARE STRIP -->
+<section class="section-sm">
+    <div class="container">
+        <div class="compare-strip reveal">
+            <div>
+                <h3>Not Sure Which Material to Choose?</h3>
+                <p>Our detailed materials comparison page breaks down MS, SS, and Aluminum — cost, durability, maintenance, and ideal use cases.</p>
+            </div>
+            <a href="materials.html" class="btn btn-outline-white btn-lg" style="flex-shrink:0;">Compare Materials &rarr;</a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<div id="main-footer"></div>
+<script src="components.js"></script>
+</body>
+</html>

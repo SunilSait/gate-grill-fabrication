@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" id="root-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Coming Soon — IronCraft</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .coming-soon-body { min-height:100vh; background:var(--secondary); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:2rem; text-align:center; position:relative; overflow:hidden; }
+        .orb { position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none; }
+        .notify-form { display:flex; gap:0.625rem; max-width:400px; width:100%; margin:0 auto; flex-wrap:wrap; }
+        .notify-input { flex:1; padding:0.75rem 1rem; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.15); border-radius:var(--radius-md); color:#fff; font-size:0.875rem; outline:none; min-width:200px; transition:var(--transition-fast); font-family:inherit; }
+        .notify-input:focus { border-color:var(--primary); }
+        .notify-input::placeholder { color:rgba(255,255,255,0.4); }
+    </style>
+</head>
+<body>
+
+<div class="coming-soon-body">
+    <div class="orb" style="width:500px;height:500px;background:radial-gradient(circle,rgba(180,83,9,0.2) 0%,transparent 70%);top:-100px;right:-100px;"></div>
+    <div class="orb" style="width:350px;height:350px;background:radial-gradient(circle,rgba(180,83,9,0.1) 0%,transparent 70%);bottom:-80px;left:-80px;"></div>
+
+    <div style="position:relative;z-index:1;max-width:600px;width:100%;">
+        <!-- LOGO -->
+        <a href="index.html" style="display:inline-flex;align-items:center;gap:0.75rem;margin-bottom:3rem;text-decoration:none;">
+            <img src="logo.svg" width="44" height="44" alt="IronCraft Logo" style="width:44px;height:44px;">
+            <div style="text-align:left;line-height:1.1;">
+                <div style="font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:700;color:#fff;">IronCraft</div>
+                <div style="font-size:0.7rem;font-weight:500;color:var(--primary);letter-spacing:0.05em;text-transform:uppercase;">Gate &amp; Grill</div>
+            </div>
+        </a>
+
+        <div class="section-tag" style="background:rgba(180,83,9,0.2);border-color:rgba(180,83,9,0.4);margin-bottom:1.5rem;">
+            Something New is Coming
+        </div>
+
+        <h1 style="color:#fff;font-size:clamp(2rem,6vw,3.5rem);margin-bottom:1.25rem;">We're Building Something Great</h1>
+        <p style="color:rgba(255,255,255,0.6);font-size:1.05rem;max-width:480px;margin:0 auto 2.5rem;">Our team is working hard to bring you a new feature. Sign up to be notified when it launches.</p>
+
+        <!-- COUNTDOWN -->
+        <div class="coming-soon-countdown">
+            <div class="countdown-box">
+                <div class="countdown-num" id="cd-days">00</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-num" id="cd-hours">00</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-num" id="cd-mins">00</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-num" id="cd-secs">00</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+
+        <!-- NOTIFY FORM -->
+        <form class="notify-form" onsubmit="handleNotify(event)">
+            <input type="email" class="notify-input" placeholder="Enter your email address" required>
+            <button type="submit" class="btn btn-primary">Notify Me</button>
+        </form>
+
+        <p style="font-size:0.8rem;color:rgba(255,255,255,0.35);margin-top:1rem;">No spam. We'll only notify you when it's live.</p>
+
+        <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.08);">
+            <p style="font-size:0.85rem;color:rgba(255,255,255,0.4);margin-bottom:1rem;">Meanwhile, explore our existing pages:</p>
+            <div style="display:flex;gap:0.5rem;justify-content:center;flex-wrap:wrap;">
+                <a href="index.html" class="btn btn-outline-white btn-sm">Home</a>
+                <a href="products.html" class="btn btn-outline-white btn-sm">Products</a>
+                <a href="gallery.html" class="btn btn-outline-white btn-sm">Gallery</a>
+                <a href="contact.html" class="btn btn-outline-white btn-sm">Contact</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="components.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Launch date: 60 days from today
+    const launchDate = new Date();
+    launchDate.setDate(launchDate.getDate() + 60);
+    startCountdown(launchDate.toISOString());
+});
+function handleNotify(e) {
+    e.preventDefault();
+    e.target.innerHTML = '<span style="color:rgba(255,255,255,0.7);font-size:0.875rem;">✓ You\'re on the list! We\'ll notify you at launch.</span>';
+}
+</script>
+</body>
+</html>

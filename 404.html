@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" id="root-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>404 — Page Not Found | IronCraft</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="main-nav"></div>
+
+<main class="fullscreen-page">
+    <div class="fullscreen-content">
+        <div style="max-width:560px;width:100%;">
+            <div style="position:relative;display:inline-block;margin-bottom:1rem;">
+                <div class="error-code" style="position:relative;">404</div>
+                <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80px;height:80px;background:var(--primary-subtle);border-radius:50%;z-index:-1;filter:blur(20px);"></div>
+            </div>
+
+            <div style="margin-bottom:1.5rem;">
+                <img src="logo.svg" alt="IronCraft" width="48" height="48" style="margin:0 auto 1rem;display:block;opacity:0.5;">
+            </div>
+
+            <h1 class="error-subtitle">Oops! Gate Not Found</h1>
+            <p class="error-desc">The page you're looking for doesn't exist or may have been moved. Let's get you back on track.</p>
+
+            <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+                <a href="index.html" class="btn btn-primary btn-lg">Go Home</a>
+                <a href="contact.html" class="btn btn-secondary btn-lg">Contact Us</a>
+            </div>
+
+            <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border-default);">
+                <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1rem;">You might be looking for:</p>
+                <div style="display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;">
+                    <a href="products.html" class="btn btn-secondary btn-sm">Products</a>
+                    <a href="gallery.html" class="btn btn-secondary btn-sm">Gallery</a>
+                    <a href="pricing.html" class="btn btn-secondary btn-sm">Pricing</a>
+                    <a href="materials.html" class="btn btn-secondary btn-sm">Materials</a>
+                    <a href="contact.html" class="btn btn-secondary btn-sm">Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div id="main-footer"></div>
+<script src="components.js"></script>
+</body>
+</html>

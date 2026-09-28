@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" id="root-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IronCraft Design Gallery — Browse completed gate, grill, railing, and compound wall installations. Find inspiration for your custom metalwork project.">
+    <title>Design Gallery — IronCraft Gate & Grill Fabrication</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-hero { background:var(--secondary); padding:6rem 0 5rem; position:relative; overflow:hidden; }
+        .page-hero::before { content:''; position:absolute; top:-60px; right:-60px; width:400px; height:400px; background:radial-gradient(circle, rgba(180,83,9,0.12) 0%, transparent 70%); border-radius:50%; pointer-events:none; }
+        .page-hero h1 { color:#fff; margin-bottom:1rem; }
+        .page-hero p { color:rgba(255,255,255,0.65); max-width:560px; font-size:1.05rem; }
+        .breadcrumb { display:flex; align-items:center; gap:0.5rem; margin-bottom:1.5rem; font-size:0.825rem; }
+        .breadcrumb a { color:rgba(255,255,255,0.5); transition:color 0.2s; }
+        .breadcrumb a:hover { color:var(--primary); }
+        .breadcrumb span { color:rgba(255,255,255,0.3); }
+        .breadcrumb-current { color:var(--primary); font-weight:600; }
+        .filter-bar { display:flex; gap:0.5rem; flex-wrap:wrap; justify-content:center; margin-bottom:3rem; }
+        .filter-btn { padding:0.5rem 1.25rem; border-radius:var(--radius-full); font-size:0.825rem; font-weight:600; border:1.5px solid var(--border-default); background:var(--bg-card); color:var(--text-body); cursor:pointer; transition:all 0.2s ease; }
+        .filter-btn:hover, .filter-btn.active { background:var(--primary); border-color:var(--primary); color:#fff; }
+        .gallery-masonry { columns:3; gap:1.25rem; }
+        @media (max-width:900px) { .gallery-masonry { columns:2; } }
+        @media (max-width:520px) { .gallery-masonry { columns:1; } }
+        .gallery-masonry > .gal-item { break-inside:avoid; margin-bottom:1.25rem; border-radius:1.125rem; overflow:hidden; position:relative; cursor:pointer; }
+        .gal-item img { width:100%; display:block; transition:transform 0.5s ease; }
+        .gal-item:hover img { transform:scale(1.05); }
+        .gal-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 55%); opacity:0; transition:opacity 0.35s ease; display:flex; flex-direction:column; justify-content:flex-end; padding:1.25rem; }
+        .gal-item:hover .gal-overlay { opacity:1; }
+        .gal-overlay-title { color:#fff; font-size:0.9rem; font-weight:600; margin-bottom:0.25rem; }
+        .gal-overlay-cat { color:var(--primary); font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; }
+        .lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:9999; align-items:center; justify-content:center; padding:2rem; }
+        .lightbox.open { display:flex; }
+        .lightbox-inner { position:relative; max-width:900px; width:100%; }
+        .lightbox-img { width:100%; border-radius:1.25rem; display:block; max-height:80vh; object-fit:contain; }
+        .lightbox-close { position:absolute; top:-3rem; right:0; background:none; border:none; color:#fff; font-size:2rem; cursor:pointer; line-height:1; }
+        .lightbox-caption { text-align:center; color:rgba(255,255,255,0.7); font-size:0.9rem; margin-top:1rem; }
+        .project-showcase { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; margin-bottom:5rem; }
+        .project-showcase.reverse { direction:rtl; }
+        .project-showcase.reverse > * { direction:ltr; }
+        @media (max-width:768px) { .project-showcase { grid-template-columns:1fr; gap:2rem; } .project-showcase.reverse { direction:ltr; } }
+        .project-showcase-img { border-radius:1.25rem; overflow:hidden; aspect-ratio:4/3; }
+        .project-showcase-img img { width:100%; height:100%; object-fit:cover; }
+        .project-showcase-content { }
+        .project-showcase-content h3 { font-size:1.4rem; margin-bottom:0.75rem; }
+        .project-detail-list { display:flex; flex-direction:column; gap:0.5rem; margin:1.25rem 0 1.75rem; }
+        .project-detail-item { display:flex; align-items:center; justify-content:space-between; padding:0.625rem 0; border-bottom:1px solid var(--border-light); font-size:0.875rem; }
+        .project-detail-item:last-child { border-bottom:none; }
+        .project-detail-label { color:var(--text-muted); font-weight:500; }
+        .project-detail-val { color:var(--text-heading); font-weight:600; }
+    </style>
+</head>
+<body>
+
+<div id="main-nav"></div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span>&rsaquo;</span>
+            <span class="breadcrumb-current">Design Gallery</span>
+        </div>
+        <h1>Design Gallery</h1>
+        <p>Browse hundreds of completed installations — gates, railings, grills, and compound walls. Find your perfect design inspiration.</p>
+    </div>
+</div>
+
+<!-- FILTER TABS -->
+<section class="section-sm bg-surface">
+    <div class="container">
+        <div class="filter-bar" id="gallery-filter">
+            <button class="filter-btn active" onclick="filterGallery('all', this)">All Projects</button>
+            <button class="filter-btn" onclick="filterGallery('gates', this)">MS Gates</button>
+            <button class="filter-btn" onclick="filterGallery('railings', this)">Railings</button>
+            <button class="filter-btn" onclick="filterGallery('grills', this)">Grills</button>
+            <button class="filter-btn" onclick="filterGallery('walls', this)">Compound Walls</button>
+        </div>
+        <div class="gallery-masonry" id="gallery-grid">
+            <div class="gal-item" data-cat="gates" onclick="openLightbox(this)">
+                <img src="assets/images/hero-gate.jpg" alt="Ornate entrance gate at dusk">
+                <div class="gal-overlay">
+                    <div class="gal-overlay-cat">MS Gate</div>
+                    <div class="gal-overlay-title">Heritage Ornamental Swing Gate</div>
+                </div>
+            </div>
+            <div class="gal-item" data-cat="railings" onclick="openLightbox(this)">
+                <img src="assets/images/staircase-railing.jpg" alt="SS staircase railing">
+                <div class="gal-overlay">
+                    <div class="gal-overlay-cat">SS Railing</div>
+                    <div class="gal-overlay-title">Grand Staircase SS Railing</div>
+                </div>
+            </div>
+            <div class="gal-item" data-cat="grills" onclick="openLightbox(this)">
+                <img src="assets/images/aluminum-grill.jpg" alt="Aluminum diamond grill">
+                <div class="gal-overlay">
+                    <div class="gal-overlay-cat">Aluminum Grill</div>
+                    <div class="gal-overlay-title">Diamond Pattern Window Grill</div>
+                </div>
+            </div>
+            <div class="gal-item" data-cat="gates" onclick="openLightbox(this)">
+                <img src="assets/images/modern-gate.jpg" alt="Contemporary horizontal gate">
+                <div class="gal-overlay">
+                    <div class="gal-overlay-cat">Aluminum Gate</div>
+                    <div class="gal-overlay-title">Sleek Modern Sliding Gate</div>
+                </div>
+            </div>
+            <div class="gal-item" data-cat="walls" onclick="openLightbox(this)">
+                <img src="assets/images/compound-wall.jpg" alt="Stone compound wall with gate">
+                <div class="gal-overlay">
+                    <div class="gal-overlay-cat">Compound Wall</div>
+                    <div class="gal-overlay-title">Integrated Compound Wall System</div>
+                </div>
+            </div>
+            <div class="gal-item" data-cat="railings" onclick="openLightbox(this)">
+                <img src="assets/images/ss-railing.jpg" alt="Balcony SS railing">
+                <div class="gal-overlay">
+                    <div class="gal-overlay-cat">SS Railing</div>
+                    <div class="gal-overlay-title">Modern Balcony Glass Railing</div>
+                </div>
+            </div>
+            <div class="gal-item" data-cat="grills" onclick="openLightbox(this)">
+                <img src="assets/images/window-grill.jpg" alt="Window security grill">
+                <div class="gal-overlay">
+                    <div class="gal-overlay-cat">Window Guard</div>
+                    <div class="gal-overlay-title">Decorative Security Window Guard</div>
+                </div>
+            </div>
+            <div class="gal-item" data-cat="gates" onclick="openLightbox(this)">
+                <img src="assets/images/ornamental-gate.jpg" alt="Ornamental iron gate">
+                <div class="gal-overlay">
+                    <div class="gal-overlay-cat">MS Gate</div>
+                    <div class="gal-overlay-title">Victorian Ornamental Gate</div>
+                </div>
+            </div>
+            <div class="gal-item" data-cat="walls" onclick="openLightbox(this)">
+                <img src="assets/images/workshop.jpg" alt="Fabrication in workshop">
+                <div class="gal-overlay">
+                    <div class="gal-overlay-cat">Fabrication</div>
+                    <div class="gal-overlay-title">Precision Workshop Fabrication</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <div class="lightbox-inner" onclick="event.stopPropagation()">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <img src="" alt="" class="lightbox-img" id="lightbox-img">
+        <p class="lightbox-caption" id="lightbox-caption"></p>
+    </div>
+</div>
+
+<!-- FEATURED SHOWCASE -->
+<section class="section">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag">Featured Projects</span>
+            <h2>Spotlight Installations</h2>
+            <span class="accent-line"></span>
+            <p>A closer look at some of our most exceptional projects with full details.</p>
+        </div>
+
+        <div class="project-showcase reveal">
+            <div class="project-showcase-img">
+                <img src="assets/images/hero-gate.jpg" alt="Heritage ornamental gate">
+            </div>
+            <div class="project-showcase-content">
+                <span class="section-tag">Featured Project #01</span>
+                <h3>Heritage Ornamental Estate Gate</h3>
+                <p>A stunning double-panel swing gate with traditional scrollwork, peacock motif center, and decorative arch top. Fabricated from 25mm square sections with intricate scroll details.</p>
+                <div class="project-detail-list">
+                    <div class="project-detail-item"><span class="project-detail-label">Material</span><span class="project-detail-val">Mild Steel (MS)</span></div>
+                    <div class="project-detail-item"><span class="project-detail-label">Type</span><span class="project-detail-val">Double Swing Gate</span></div>
+                    <div class="project-detail-item"><span class="project-detail-label">Size</span><span class="project-detail-val">14ft Wide × 7ft Tall</span></div>
+                    <div class="project-detail-item"><span class="project-detail-label">Finish</span><span class="project-detail-val">Matte Black Powder Coat</span></div>
+                    <div class="project-detail-item"><span class="project-detail-label">Location</span><span class="project-detail-val">Velachery, Chennai</span></div>
+                </div>
+                <a href="contact.html" class="btn btn-primary btn-lg">Order Similar Design</a>
+            </div>
+        </div>
+
+        <div class="project-showcase reverse reveal">
+            <div class="project-showcase-img">
+                <img src="assets/images/staircase-railing.jpg" alt="SS staircase railing project">
+            </div>
+            <div class="project-showcase-content">
+                <span class="section-tag">Featured Project #02</span>
+                <h3>Grand Interior Staircase Railing</h3>
+                <p>A sweeping curved staircase railing system using SS 304 tubular sections with horizontal cable wire infill. Mirror polished for a premium contemporary look.</p>
+                <div class="project-detail-list">
+                    <div class="project-detail-item"><span class="project-detail-label">Material</span><span class="project-detail-val">SS 304 + Cable Wire</span></div>
+                    <div class="project-detail-item"><span class="project-detail-label">Type</span><span class="project-detail-val">Interior Staircase</span></div>
+                    <div class="project-detail-item"><span class="project-detail-label">Length</span><span class="project-detail-val">32 Linear Feet</span></div>
+                    <div class="project-detail-item"><span class="project-detail-label">Finish</span><span class="project-detail-val">Mirror Polish</span></div>
+                    <div class="project-detail-item"><span class="project-detail-label">Location</span><span class="project-detail-val">Saibaba Colony, Coimbatore</span></div>
+                </div>
+                <a href="contact.html" class="btn btn-primary btn-lg">Order Similar Design</a>
+            </div>
+        </div>
+
+        <div class="project-showcase reveal">
+            <div class="project-showcase-img">
+                <img src="assets/images/compound-wall.jpg" alt="Compound wall system">
+            </div>
+            <div class="project-showcase-content">
+                <span class="section-tag">Featured Project #03</span>
+                <h3>Integrated Compound Wall System</h3>
+                <p>A complete boundary solution — stone-cladded compound wall with decorative MS fence topper, centrally mounted sliding gate, and integrated pillar-mounted lanterns.</p>
+                <div class="project-detail-list">
+                    <div class="project-detail-item"><span class="project-detail-label">Wall Material</span><span class="project-detail-val">Brick + Stone Cladding</span></div>
+                    <div class="project-detail-item"><span class="project-detail-label">Gate Type</span><span class="project-detail-val">Motorized Sliding</span></div>
+                    <div class="project-detail-item"><span class="project-detail-label">Perimeter</span><span class="project-detail-val">180 Linear Feet</span></div>
+                    <div class="project-detail-item"><span class="project-detail-label">Gate Width</span><span class="project-detail-val">16ft Opening</span></div>
+                    <div class="project-detail-item"><span class="project-detail-label">Location</span><span class="project-detail-val">Madurai North</span></div>
+                </div>
+                <a href="contact.html" class="btn btn-primary btn-lg">Order Similar Design</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="section-sm bg-surface">
+    <div class="container">
+        <div class="cta-banner reveal">
+            <h2>Love What You See?</h2>
+            <p>Every design in our gallery can be customized to match your home's style and specifications. Book a free consultation to get started.</p>
+            <div class="cta-banner-btns">
+                <a href="contact.html" class="btn btn-primary btn-xl">Book Free Site Visit</a>
+                <a href="products.html" class="btn btn-outline-white btn-xl">Explore Products</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="main-footer"></div>
+
+<script src="components.js"></script>
+<script>
+function filterGallery(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('#gallery-grid .gal-item').forEach(item => {
+        if (cat === 'all' || item.dataset.cat === cat) {
+            item.style.display = '';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+function openLightbox(el) {
+    const img = el.querySelector('img');
+    const titleEl = el.querySelector('.gal-overlay-title');
+    const catEl = el.querySelector('.gal-overlay-cat');
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightbox-img');
+    const lbCap = document.getElementById('lightbox-caption');
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    lbCap.textContent = (catEl ? catEl.textContent + ' — ' : '') + (titleEl ? titleEl.textContent : img.alt);
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
+</script>
+</body>
+</html>

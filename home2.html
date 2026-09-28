@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en" id="root-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IronCraft Premium — Luxury custom gate and grill fabrication. Explore our premium portfolio of estate gates, designer railings, and bespoke metalwork installations.">
+    <title>IronCraft Premium — Luxury Gate & Grill Fabrication</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .premium-hero {
+            background: var(--secondary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 6rem 0;
+        }
+        .premium-hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-15px); } }
+        .premium-hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+        }
+        @media (max-width: 768px) { .premium-hero-grid { grid-template-columns: 1fr; } }
+        .premium-hero-left h1 { color: #fff; margin-bottom: 1.25rem; font-size: clamp(2.5rem, 6vw, 4rem); }
+        .premium-hero-left p { color: rgba(255,255,255,0.7); font-size: 1.1rem; margin-bottom: 2rem; max-width: 480px; }
+        .premium-hero-right { position: relative; }
+        .premium-hero-img { border-radius: 1.5rem; overflow: hidden; aspect-ratio: 3/2; }
+        .premium-hero-img img { width: 100%; height: 100%; object-fit: cover; }
+        .premium-badge-float {
+            position: absolute;
+            background: rgba(180,83,9,0.92);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(180,83,9,0.5);
+            border-radius: 1rem;
+            padding: 1rem 1.25rem;
+            color: #fff;
+            text-align: center;
+        }
+        .premium-badge-float.top-left { top: -20px; left: -20px; }
+        .premium-badge-float.bottom-right { bottom: -20px; right: -20px; }
+        .premium-badge-float .num { font-family: 'Sora', sans-serif; font-size: 1.75rem; font-weight: 700; line-height: 1; }
+        .premium-badge-float .label { font-size: 0.72rem; opacity: 0.85; margin-top: 0.2rem; }
+
+        .marquee-wrap { overflow: hidden; background: var(--primary); padding: 0.875rem 0; }
+        .marquee-track { display: flex; gap: 3rem; white-space: nowrap; animation: marquee 20s linear infinite; }
+        .marquee-item { font-family: 'Sora', sans-serif; font-weight: 600; font-size: 0.85rem; color: #fff; letter-spacing: 0.06em; text-transform: uppercase; display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
+        .marquee-sep { width: 5px; height: 5px; background: rgba(255,255,255,0.5); border-radius: 50%; display: inline-block; flex-shrink: 0; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        .masonry-grid {
+            columns: 3;
+            gap: 1.25rem;
+        }
+        .masonry-grid > * { break-inside: avoid; margin-bottom: 1.25rem; }
+        @media (max-width: 768px) { .masonry-grid { columns: 2; } }
+        @media (max-width: 480px) { .masonry-grid { columns: 1; } }
+
+        .masonry-item { border-radius: 1.125rem; overflow: hidden; position: relative; cursor: pointer; }
+        .masonry-item img { width: 100%; display: block; transition: transform 0.5s ease; }
+        .masonry-item:hover img { transform: scale(1.05); }
+        .masonry-item-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%); opacity: 0; transition: opacity 0.35s ease; display: flex; align-items: flex-end; padding: 1.25rem; }
+        .masonry-item:hover .masonry-item-overlay { opacity: 1; }
+        .masonry-item-overlay span { color: #fff; font-size: 0.875rem; font-weight: 600; }
+
+        .dark-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 1.25rem;
+            padding: 2rem;
+            transition: all 0.35s ease;
+        }
+        .dark-card:hover { background: rgba(180,83,9,0.1); border-color: rgba(180,83,9,0.25); transform: translateY(-3px); }
+        .dark-card-icon { width: 48px; height: 48px; background: rgba(180,83,9,0.18); border-radius: 0.875rem; display: flex; align-items: center; justify-content: center; color: #B45309; margin-bottom: 1rem; }
+        .dark-card-icon svg { width: 22px; height: 22px; }
+        .dark-card h4 { color: #fff; font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .dark-card p { color: rgba(255,255,255,0.6); font-size: 0.875rem; }
+
+        .timeline { display: flex; flex-direction: column; gap: 0; max-width: 680px; margin: 0 auto; }
+        .timeline-item { display: flex; gap: 1.5rem; padding-bottom: 2.5rem; position: relative; }
+        .timeline-item:last-child { padding-bottom: 0; }
+        .timeline-line { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+        .timeline-dot { width: 44px; height: 44px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Sora', sans-serif; font-weight: 700; color: #fff; font-size: 1rem; flex-shrink: 0; box-shadow: 0 0 0 4px rgba(180,83,9,0.15); }
+        .timeline-connector { flex: 1; width: 2px; background: linear-gradient(to bottom, var(--primary), rgba(180,83,9,0.1)); margin-top: 0.5rem; }
+        .timeline-item:last-child .timeline-connector { display: none; }
+        .timeline-content { padding-top: 0.5rem; }
+        .timeline-content h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.375rem; }
+        .timeline-content p { font-size: 0.875rem; }
+
+        .horizontal-product-card { display: grid; grid-template-columns: 200px 1fr; border-radius: 1.125rem; overflow: hidden; background: var(--bg-card); border: 1px solid var(--border-default); box-shadow: var(--shadow-card); transition: all 0.35s ease; }
+        .horizontal-product-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card-hover); border-color: transparent; }
+        .horizontal-product-card img { width: 100%; height: 100%; object-fit: cover; }
+        .horizontal-product-body { padding: 1.5rem; display: flex; flex-direction: column; justify-content: center; }
+        .horizontal-product-body h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.375rem; }
+        .horizontal-product-body p { font-size: 0.85rem; margin-bottom: 1rem; }
+        @media (max-width: 560px) { .horizontal-product-card { grid-template-columns: 1fr; } .horizontal-product-card img { height: 180px; } }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div id="main-nav"></div>
+
+<!-- PREMIUM HERO -->
+<section class="premium-hero">
+    <div class="premium-hero-orb" style="width:500px;height:500px;background:radial-gradient(circle, rgba(180,83,9,0.12) 0%, transparent 70%);top:-100px;right:-100px;"></div>
+    <div class="premium-hero-orb" style="width:300px;height:300px;background:radial-gradient(circle, rgba(180,83,9,0.08) 0%, transparent 70%);bottom:-50px;left:-50px;animation-delay:3s;"></div>
+    <div class="container">
+        <div class="premium-hero-grid">
+            <div class="premium-hero-left reveal">
+                <div class="hero-badge">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    Premium Collection 2024
+                </div>
+                <h1>Where Steel Meets Sophistication</h1>
+                <p>Elevate your home's entrance with bespoke metalwork crafted by master fabricators. Each gate, railing, and grill is a unique piece of functional art.</p>
+                <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+                    <a href="contact.html" class="btn btn-primary btn-xl">Request Custom Design</a>
+                    <a href="gallery.html" class="btn btn-outline-white btn-xl">View Portfolio</a>
+                </div>
+                <div style="display:flex;gap:2rem;margin-top:2.5rem;flex-wrap:wrap;">
+                    <div>
+                        <div style="font-family:'Sora',sans-serif;font-size:1.75rem;font-weight:700;color:#B45309;line-height:1;">50+</div>
+                        <div style="font-size:0.8rem;color:rgba(255,255,255,0.55);margin-top:0.2rem;">Design Patterns</div>
+                    </div>
+                    <div>
+                        <div style="font-family:'Sora',sans-serif;font-size:1.75rem;font-weight:700;color:#B45309;line-height:1;">3</div>
+                        <div style="font-size:0.8rem;color:rgba(255,255,255,0.55);margin-top:0.2rem;">Premium Materials</div>
+                    </div>
+                    <div>
+                        <div style="font-family:'Sora',sans-serif;font-size:1.75rem;font-weight:700;color:#B45309;line-height:1;">Free</div>
+                        <div style="font-size:0.8rem;color:rgba(255,255,255,0.55);margin-top:0.2rem;">Site Visit</div>
+                    </div>
+                </div>
+            </div>
+            <div class="premium-hero-right reveal" style="animation-delay:0.2s;">
+                <div class="premium-hero-img">
+                    <img src="assets/images/hero-premium.jpg" alt="Luxury estate gate with night lighting">
+                </div>
+                <div class="premium-badge-float top-left">
+                    <div class="num">5yr</div>
+                    <div class="label">Warranty</div>
+                </div>
+                <div class="premium-badge-float bottom-right">
+                    <div class="num">98%</div>
+                    <div class="label">Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MARQUEE STRIP -->
+<div class="marquee-wrap">
+    <div class="marquee-track">
+        <span class="marquee-item">MS Gates <span class="marquee-sep"></span></span>
+        <span class="marquee-item">SS Railings <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Aluminum Grills <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Window Guards <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Compound Walls <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Custom Designs <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Free Site Visit <span class="marquee-sep"></span></span>
+        <span class="marquee-item">5-Year Warranty <span class="marquee-sep"></span></span>
+        <!-- Duplicate for seamless loop -->
+        <span class="marquee-item">MS Gates <span class="marquee-sep"></span></span>
+        <span class="marquee-item">SS Railings <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Aluminum Grills <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Window Guards <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Compound Walls <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Custom Designs <span class="marquee-sep"></span></span>
+        <span class="marquee-item">Free Site Visit <span class="marquee-sep"></span></span>
+        <span class="marquee-item">5-Year Warranty <span class="marquee-sep"></span></span>
+    </div>
+</div>
+
+<!-- FEATURED PRODUCTS HORIZONTAL -->
+<section class="section">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag">Our Products</span>
+            <h2>Crafted for Distinction</h2>
+            <span class="accent-line"></span>
+            <p>Five product categories, each built with uncompromising quality and attention to detail.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:1.25rem;" class="reveal">
+            <div class="horizontal-product-card">
+                <img src="assets/images/ornamental-gate.jpg" alt="Ornamental MS Gate">
+                <div class="horizontal-product-body">
+                    <span class="card-tag">Mild Steel — MS</span>
+                    <h3>Heritage Ornamental Gates</h3>
+                    <p>Timeless scrollwork patterns, arched tops, and decorative motifs crafted from heavy-gauge mild steel. Available in swing and sliding configurations.</p>
+                    <a href="products.html" class="btn btn-primary btn-sm" style="width:fit-content;">Learn More</a>
+                </div>
+            </div>
+            <div class="horizontal-product-card">
+                <img src="assets/images/staircase-railing.jpg" alt="SS Staircase Railing">
+                <div class="horizontal-product-body">
+                    <span class="card-tag">Stainless Steel — SS</span>
+                    <h3>Premium SS Railings</h3>
+                    <p>Mirror or brushed finish stainless steel railings for interior staircases, exterior balconies, and terraces. Corrosion-resistant and low maintenance.</p>
+                    <a href="products.html" class="btn btn-primary btn-sm" style="width:fit-content;">Learn More</a>
+                </div>
+            </div>
+            <div class="horizontal-product-card">
+                <img src="assets/images/aluminum-grill.jpg" alt="Aluminum Diamond Grill">
+                <div class="horizontal-product-body">
+                    <span class="card-tag">Aluminum</span>
+                    <h3>Designer Aluminum Grills</h3>
+                    <p>Lightweight, rust-proof aluminum grills in geometric, floral, and lattice patterns. Perfect for windows, ventilation openings, and decorative panels.</p>
+                    <a href="products.html" class="btn btn-primary btn-sm" style="width:fit-content;">Learn More</a>
+                </div>
+            </div>
+            <div class="horizontal-product-card">
+                <img src="assets/images/window-grill.jpg" alt="Window Security Grills">
+                <div class="horizontal-product-body">
+                    <span class="card-tag">Security</span>
+                    <h3>Decorative Window Guards</h3>
+                    <p>Stylish security grills that protect your windows while enhancing your home's exterior. Custom patterns to match your home's architecture.</p>
+                    <a href="products.html" class="btn btn-primary btn-sm" style="width:fit-content;">Learn More</a>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center;margin-top:2.5rem;">
+            <a href="products.html" class="btn btn-secondary btn-lg">View All Products</a>
+        </div>
+    </div>
+</section>
+
+<!-- DARK FEATURE SECTION -->
+<section class="section" style="background:var(--secondary);">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag" style="background:rgba(180,83,9,0.2);border-color:rgba(180,83,9,0.4);">Why Choose Us</span>
+            <h2 style="color:#fff;">The IronCraft Difference</h2>
+            <span class="accent-line" style="margin:0.875rem auto 1rem;"></span>
+            <p style="color:rgba(255,255,255,0.6);">We don't just build gates — we create lasting first impressions for your home.</p>
+        </div>
+        <div class="grid-3 reveal">
+            <div class="dark-card">
+                <div class="dark-card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <h4>5-Year Structural Warranty</h4>
+                <p>Every installation backed by our comprehensive warranty covering welds, structure, and coating.</p>
+            </div>
+            <div class="dark-card">
+                <div class="dark-card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <h4>On-Time Delivery Promise</h4>
+                <p>We commit to project timelines and maintain transparent communication throughout fabrication.</p>
+            </div>
+            <div class="dark-card">
+                <div class="dark-card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <h4>Free On-Site Measurement</h4>
+                <p>Our specialists visit your home, take precise measurements, and provide design recommendations.</p>
+            </div>
+            <div class="dark-card">
+                <div class="dark-card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <h4>50+ Design Patterns</h4>
+                <p>Choose from our extensive catalogue or bring your own design — we'll bring any vision to life.</p>
+            </div>
+            <div class="dark-card">
+                <div class="dark-card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <h4>Certified Fabricators</h4>
+                <p>Our team of certified welders and metalworkers bring decades of combined experience to each project.</p>
+            </div>
+            <div class="dark-card">
+                <div class="dark-card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                </div>
+                <h4>Doorstep Delivery</h4>
+                <p>We handle complete logistics — from our workshop to your site. No middlemen, no hassle.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PORTFOLIO MASONRY -->
+<section class="section">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag">Design Portfolio</span>
+            <h2>Installations That Speak for Themselves</h2>
+            <span class="accent-line"></span>
+            <p>Every image tells a story of precision, passion, and pride.</p>
+        </div>
+        <div class="masonry-grid reveal">
+            <div class="masonry-item">
+                <img src="assets/images/hero-gate.jpg" alt="Sunset gate installation">
+                <div class="masonry-item-overlay"><span>Ornate Entrance Gate</span></div>
+            </div>
+            <div class="masonry-item">
+                <img src="assets/images/modern-gate.jpg" alt="Modern horizontal gate">
+                <div class="masonry-item-overlay"><span>Contemporary Design Gate</span></div>
+            </div>
+            <div class="masonry-item">
+                <img src="assets/images/staircase-railing.jpg" alt="Staircase railing">
+                <div class="masonry-item-overlay"><span>Grand Staircase Railing</span></div>
+            </div>
+            <div class="masonry-item">
+                <img src="assets/images/aluminum-grill.jpg" alt="Window grill">
+                <div class="masonry-item-overlay"><span>Diamond Window Grill</span></div>
+            </div>
+            <div class="masonry-item">
+                <img src="assets/images/compound-wall.jpg" alt="Compound wall">
+                <div class="masonry-item-overlay"><span>Estate Compound Wall</span></div>
+            </div>
+            <div class="masonry-item">
+                <img src="assets/images/ss-railing.jpg" alt="SS balcony railing">
+                <div class="masonry-item-overlay"><span>SS Balcony Railing</span></div>
+            </div>
+        </div>
+        <div style="text-align:center;margin-top:2rem;">
+            <a href="gallery.html" class="btn btn-primary btn-lg">Explore Full Gallery</a>
+        </div>
+    </div>
+</section>
+
+<!-- PROCESS TIMELINE -->
+<section class="section bg-surface">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag">Our Process</span>
+            <h2>Your Project, Step by Step</h2>
+            <span class="accent-line"></span>
+        </div>
+        <div class="timeline reveal">
+            <div class="timeline-item">
+                <div class="timeline-line">
+                    <div class="timeline-dot">1</div>
+                    <div class="timeline-connector"></div>
+                </div>
+                <div class="timeline-content">
+                    <h4>Free Site Visit & Consultation</h4>
+                    <p>We visit your property at your preferred time. Our specialist measures, assesses, and discusses your requirements, material options, and design preferences.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-line">
+                    <div class="timeline-dot">2</div>
+                    <div class="timeline-connector"></div>
+                </div>
+                <div class="timeline-content">
+                    <h4>Design Proposal & Quotation</h4>
+                    <p>We create detailed design sketches and provide a comprehensive, itemized price quote within 48 hours. No hidden costs, ever.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-line">
+                    <div class="timeline-dot">3</div>
+                    <div class="timeline-connector"></div>
+                </div>
+                <div class="timeline-content">
+                    <h4>Workshop Fabrication</h4>
+                    <p>Your product is precision-fabricated using your approved design and chosen materials. Quality inspected at every stage of production.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-line">
+                    <div class="timeline-dot">4</div>
+                    <div class="timeline-connector"></div>
+                </div>
+                <div class="timeline-content">
+                    <h4>Professional Installation</h4>
+                    <p>Our installation team arrives on schedule and completes the job cleanly and efficiently. Final quality inspection is conducted with you present.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-line">
+                    <div class="timeline-dot">5</div>
+                </div>
+                <div class="timeline-content">
+                    <h4>Post-Installation Support</h4>
+                    <p>Receive our 5-year warranty certificate. We schedule complimentary maintenance checks at 12 and 36 months to ensure lasting performance.</p>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center;margin-top:3rem;">
+            <a href="contact.html" class="btn btn-primary btn-xl">Start Your Project</a>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="section-tag">Client Stories</span>
+            <h2>Trusted by Tamil Nadu's Homeowners</h2>
+            <span class="accent-line"></span>
+        </div>
+        <div class="testimonial-grid">
+            <div class="testimonial-card reveal">
+                <div class="testimonial-stars"><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span></div>
+                <p class="testimonial-text">"We renovated our entire home and the gate IronCraft made for us became the centerpiece. Neighbors stop to ask about it. The team was professional, clean, and punctual throughout."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">SK</div>
+                    <div>
+                        <div class="testimonial-name">Suresh Krishnan</div>
+                        <div class="testimonial-location">Anna Nagar, Chennai</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card reveal" style="animation-delay:0.1s">
+                <div class="testimonial-stars"><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span></div>
+                <p class="testimonial-text">"The compound wall and main gate together transformed our property. The stone pillar integration was done flawlessly. IronCraft's attention to detail is exceptional."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">MR</div>
+                    <div>
+                        <div class="testimonial-name">Meenakshi Ramesh</div>
+                        <div class="testimonial-location">RS Puram, Coimbatore</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card reveal" style="animation-delay:0.2s">
+                <div class="testimonial-stars"><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span></div>
+                <p class="testimonial-text">"I live near the coast and was worried about rust. IronCraft recommended SS 316 grade railings and they still look brand new after 4 years. Best investment for our beachside home."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">VP</div>
+                    <div>
+                        <div class="testimonial-name">Venkat Prabhu</div>
+                        <div class="testimonial-location">ECR, Chennai</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA DARK -->
+<section class="section-sm" style="background:var(--secondary);">
+    <div class="container">
+        <div style="text-align:center;position:relative;z-index:1;padding:3rem 1rem;">
+            <span class="section-tag" style="background:rgba(180,83,9,0.2);border-color:rgba(180,83,9,0.4);">Let's Build Together</span>
+            <h2 style="color:#fff;margin-bottom:1rem;margin-top:0.75rem;">Your Dream Gate Awaits</h2>
+            <p style="color:rgba(255,255,255,0.6);max-width:480px;margin:0 auto 2.5rem;">Book a free site visit. Our experts will design and quote your project — completely at no charge.</p>
+            <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+                <a href="contact.html" class="btn btn-primary btn-xl">Book Free Visit</a>
+                <a href="pricing.html" class="btn btn-outline-white btn-xl">View Pricing</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<div id="main-footer"></div>
+
+<script src="components.js"></script>
+</body>
+</html>

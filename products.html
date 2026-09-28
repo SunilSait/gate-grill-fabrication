@@ -25,15 +25,278 @@
         .product-detail-img { border-radius:1.25rem; overflow:hidden; aspect-ratio:4/3; }
         .product-detail-img img { width:100%; height:100%; object-fit:cover; }
         .product-specs { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin:1.25rem 0 1.75rem; }
-        .product-spec { background:var(--bg-surface); border:1px solid var(--border-default); border-radius:var(--radius-md); padding:0.75rem 1rem; }
         .product-spec-label { font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-muted); margin-bottom:0.25rem; }
         .product-spec-val { font-size:0.875rem; font-weight:600; color:var(--text-heading); }
-        .product-number { font-family:'Sora',sans-serif; font-size:5rem; font-weight:700; color:var(--primary); opacity:0.08; position:absolute; top:-1rem; left:-0.5rem; line-height:1; pointer-events:none; }
         .product-anchor-section { position:relative; overflow:visible; }
         .divider-line { border:none; border-top:1px solid var(--border-default); margin:0; }
-        .compare-strip { background:var(--primary); border-radius:var(--radius-xl); padding:2rem 2.5rem; display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap; }
-        .compare-strip h3 { color:#fff; font-size:1.25rem; margin-bottom:0.25rem; }
-        .compare-strip p { color:rgba(255,255,255,0.75); font-size:0.875rem; }
+        /* Product Page Material Comparison CTA Card */
+        .product-cta-card {
+            background: radial-gradient(130% 130% at 0% 0%, #291F18 0%, #171310 50%, #0D0A08 100%);
+            border: 1px solid rgba(245, 158, 11, 0.32);
+            border-radius: 24px;
+            padding: 3.5rem 3.25rem;
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.85), 0 0 50px -10px rgba(180, 83, 9, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-cta-card:hover {
+            border-color: rgba(245, 158, 11, 0.48);
+            box-shadow: 0 35px 90px -20px rgba(0, 0, 0, 0.92), 0 0 65px -8px rgba(180, 83, 9, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+        }
+        .product-cta-grid-bg {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(to right, rgba(245, 158, 11, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(245, 158, 11, 0.05) 1px, transparent 1px);
+            background-size: 32px 32px;
+            opacity: 0.6;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .product-cta-orb {
+            position: absolute;
+            top: -80px;
+            right: 15%;
+            width: 420px;
+            height: 300px;
+            background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.22) 0%, rgba(180, 83, 9, 0.08) 50%, transparent 75%);
+            border-radius: 50%;
+            filter: blur(35px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .product-cta-layout {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 3.5rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-cta-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.35rem 1rem;
+            background: rgba(245, 158, 11, 0.12);
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            border-radius: var(--radius-full);
+            color: #FDE68A;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+            backdrop-filter: blur(8px);
+        }
+        .product-cta-pulse {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #F59E0B;
+            box-shadow: 0 0 8px #F59E0B;
+            animation: pCtaPulse 2s infinite ease-in-out;
+        }
+        @keyframes pCtaPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.4); opacity: 0.5; }
+        }
+
+        .product-cta-title {
+            color: #FFFFFF;
+            font-family: var(--font-heading);
+            font-size: clamp(1.75rem, 3.2vw, 2.4rem);
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+        .product-cta-gradient {
+            background: linear-gradient(135deg, #FFFBEB 0%, #FBBF24 50%, #D97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            filter: drop-shadow(0 2px 14px rgba(245, 158, 11, 0.25));
+        }
+        .product-cta-desc {
+            color: rgba(245, 245, 244, 0.82);
+            font-size: 0.975rem;
+            line-height: 1.65;
+            margin-bottom: 1.75rem;
+        }
+
+        .product-cta-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .product-cta-btn-primary {
+            background: linear-gradient(135deg, #d97706 0%, #b45309 60%, #92400e 100%);
+            color: #ffffff !important;
+            border: 1px solid rgba(253, 230, 138, 0.45);
+            padding: 0.9rem 2rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: var(--radius-md);
+            box-shadow: 0 10px 28px rgba(180, 83, 9, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .product-cta-btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: skewX(-20deg);
+            transition: 0.65s ease;
+        }
+        .product-cta-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 36px rgba(217, 119, 6, 0.58);
+            border-color: rgba(253, 230, 138, 0.7);
+        }
+        .product-cta-btn-primary:hover::after {
+            left: 150%;
+        }
+        .product-cta-btn-primary svg {
+            transition: transform 0.25s ease;
+        }
+        .product-cta-btn-primary:hover svg {
+            transform: translateX(4px);
+        }
+        .product-cta-btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: #F5F5F4 !important;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            padding: 0.9rem 1.75rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: var(--radius-md);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .product-cta-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(245, 158, 11, 0.5);
+            color: #FFFFFF !important;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+        }
+
+        .product-material-pill-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0.875rem;
+        }
+        .product-mat-pill {
+            background: rgba(20, 16, 13, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 1rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.25s ease;
+        }
+        .product-mat-pill:hover {
+            background: rgba(28, 22, 18, 0.9);
+            border-color: rgba(245, 158, 11, 0.35);
+            transform: translateX(4px);
+        }
+        .product-mat-pill.highlight {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            box-shadow: 0 8px 24px rgba(180, 83, 9, 0.2);
+        }
+        .product-mat-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
+        .icon-ms {
+            background: rgba(120, 113, 108, 0.2);
+            color: #D6D3D1;
+            border: 1px solid rgba(120, 113, 108, 0.3);
+        }
+        .icon-ss {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(217, 119, 6, 0.4) 100%);
+            color: #FDE68A;
+            border: 1px solid rgba(245, 158, 11, 0.45);
+        }
+        .icon-al {
+            background: rgba(56, 189, 248, 0.15);
+            color: #38BDF8;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+        .product-mat-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-mat-info strong {
+            color: #FFFFFF;
+            font-size: 0.925rem;
+            font-weight: 600;
+        }
+        .product-mat-info span {
+            color: rgba(245, 245, 244, 0.65);
+            font-size: 0.775rem;
+            margin-top: 1px;
+        }
+        .product-mat-tag {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.25rem 0.6rem;
+            border-radius: var(--radius-full);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            flex-shrink: 0;
+        }
+        .tag-value { background: rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.7); }
+        .tag-popular { background: rgba(245, 158, 11, 0.2); color: #FBBF24; border: 1px solid rgba(245, 158, 11, 0.35); }
+        .tag-modern { background: rgba(56, 189, 248, 0.15); color: #38BDF8; }
+
+        @media (max-width: 992px) {
+            .product-cta-card {
+                padding: 2.75rem 1.75rem;
+                border-radius: 20px;
+            }
+            .product-cta-layout {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .product-cta-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .product-cta-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -60,46 +323,13 @@
             <div class="product-detail-img">
                 <img src="assets/images/ms-steel-gate.jpg" alt="Mild Steel Gate Collection">
             </div>
-            <div style="position:relative;">
-                <div class="product-number">01</div>
+            <div>
                 <span class="section-tag">Mild Steel</span>
                 <h2 style="margin-top:0.5rem;">MS Gates — Swing & Slide</h2>
                 <span class="accent-line"></span>
                 <p>Our best-selling category — Mild Steel gates are the go-to choice for homeowners seeking durability and affordability. Available in swing, sliding, and folding configurations with 30+ design patterns.</p>
                 <p>All MS gates receive a comprehensive rust-proofing treatment followed by high-quality powder coating in your choice of color. We use minimum 1.5mm thick MS sections for structural integrity.</p>
-                <div class="product-specs">
-                    <div class="product-spec">
-                        <div class="product-spec-label">Material Grade</div>
-                        <div class="product-spec-val">MS IS:2062 Grade A</div>
-                    </div>
-                    <div class="product-spec">
-                        <div class="product-spec-label">Thickness</div>
-                        <div class="product-spec-val">1.5mm – 3mm</div>
-                    </div>
-                    <div class="product-spec">
-                        <div class="product-spec-label">Finish Options</div>
-                        <div class="product-spec-val">Powder Coat, Paint</div>
-                    </div>
-                    <div class="product-spec">
-                        <div class="product-spec-label">Warranty</div>
-                        <div class="product-spec-val">5 Years</div>
-                    </div>
-                </div>
-                <div class="feature-list" style="margin-bottom:1.75rem;">
-                    <div class="feature-item">
-                        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
-                        <div class="feature-text"><h4>Swing, Sliding, Folding</h4><p>All gate mechanisms available with motorized automation option.</p></div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
-                        <div class="feature-text"><h4>30+ Patterns Available</h4><p>Ornamental, horizontal, vertical, geometric and custom designs.</p></div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
-                        <div class="feature-text"><h4>Any Color</h4><p>Full powder coat palette with RAL color matching available.</p></div>
-                    </div>
-                </div>
-                <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+                <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem;">
                     <a href="contact.html" class="btn btn-primary btn-lg">Get Quote</a>
                     <a href="pricing.html" class="btn btn-secondary btn-lg">View Pricing</a>
                 </div>
@@ -116,46 +346,13 @@
             <div class="product-detail-img">
                 <img src="assets/images/ss-railing.jpg" alt="Stainless Steel Railings">
             </div>
-            <div style="position:relative;">
-                <div class="product-number">02</div>
+            <div>
                 <span class="section-tag">Stainless Steel</span>
                 <h2 style="margin-top:0.5rem;">SS Railings & Balustrades</h2>
                 <span class="accent-line"></span>
                 <p>Sleek, modern stainless steel railings that combine safety with sophisticated aesthetics. Choose from tubular SS, cable-wire, glass-insert, and design-panel options for balconies, terraces, and staircases.</p>
                 <p>We use ISI-marked SS 304 (inland) and SS 316 (coastal/high-humidity) grade steel. All welds are TIG-welded for clean, strong joints. Mirror or brushed finish available.</p>
-                <div class="product-specs">
-                    <div class="product-spec">
-                        <div class="product-spec-label">Grade Options</div>
-                        <div class="product-spec-val">SS 304 / SS 316</div>
-                    </div>
-                    <div class="product-spec">
-                        <div class="product-spec-label">Finish</div>
-                        <div class="product-spec-val">Mirror / Brushed</div>
-                    </div>
-                    <div class="product-spec">
-                        <div class="product-spec-label">Weld Type</div>
-                        <div class="product-spec-val">TIG Welded</div>
-                    </div>
-                    <div class="product-spec">
-                        <div class="product-spec-label">Warranty</div>
-                        <div class="product-spec-val">5 Years</div>
-                    </div>
-                </div>
-                <div class="feature-list" style="margin-bottom:1.75rem;">
-                    <div class="feature-item">
-                        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
-                        <div class="feature-text"><h4>Coastal Grade Available</h4><p>SS 316 grade recommended for seaside and high-humidity environments.</p></div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
-                        <div class="feature-text"><h4>Glass Panel Option</h4><p>Toughened glass inserts available for a premium frameless railing look.</p></div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
-                        <div class="feature-text"><h4>Zero Maintenance</h4><p>Stainless steel never needs painting or coating. Wipe-clean surface.</p></div>
-                    </div>
-                </div>
-                <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+                <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem;">
                     <a href="contact.html" class="btn btn-primary btn-lg">Get Quote</a>
                     <a href="materials.html" class="btn btn-secondary btn-lg">SS vs MS Comparison</a>
                 </div>
@@ -171,46 +368,13 @@
             <div class="product-detail-img">
                 <img src="assets/images/aluminum-grill.jpg" alt="Aluminum Decorative Grills">
             </div>
-            <div style="position:relative;">
-                <div class="product-number">03</div>
+            <div>
                 <span class="section-tag">Aluminum</span>
                 <h2 style="margin-top:0.5rem;">Aluminum Decorative Grills</h2>
                 <span class="accent-line"></span>
                 <p>Aluminum grills offer the perfect balance of aesthetics, durability, and value. Being naturally rust-proof and lightweight, they're ideal for windows, ventilation openings, and decorative facade panels.</p>
                 <p>Available in extruded aluminum profiles with anodized or powder-coated finish. Our geometric and floral patterns are pre-designed and can be combined to create unique custom layouts.</p>
-                <div class="product-specs">
-                    <div class="product-spec">
-                        <div class="product-spec-label">Alloy Grade</div>
-                        <div class="product-spec-val">6063 / 6061 Aluminum</div>
-                    </div>
-                    <div class="product-spec">
-                        <div class="product-spec-label">Finish</div>
-                        <div class="product-spec-val">Anodized / Powder Coat</div>
-                    </div>
-                    <div class="product-spec">
-                        <div class="product-spec-label">Weight</div>
-                        <div class="product-spec-val">1/3 of Steel</div>
-                    </div>
-                    <div class="product-spec">
-                        <div class="product-spec-label">Warranty</div>
-                        <div class="product-spec-val">5 Years</div>
-                    </div>
-                </div>
-                <div class="feature-list" style="margin-bottom:1.75rem;">
-                    <div class="feature-item">
-                        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
-                        <div class="feature-text"><h4>Naturally Rust-Free</h4><p>Aluminum forms its own protective oxide layer — no painting needed.</p></div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
-                        <div class="feature-text"><h4>20+ Design Patterns</h4><p>Diamond, lattice, floral, modern geometric, and traditional patterns.</p></div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
-                        <div class="feature-text"><h4>Easy Installation</h4><p>Lightweight panels install faster, reducing on-site time and disruption.</p></div>
-                    </div>
-                </div>
-                <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+                <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem;">
                     <a href="contact.html" class="btn btn-primary btn-lg">Get Quote</a>
                     <a href="gallery.html" class="btn btn-secondary btn-lg">See Gallery</a>
                 </div>
@@ -238,7 +402,7 @@
                     <h3>Decorative Window Guards</h3>
                     <p>Security grills that double as decorative elements. Available in MS, SS, and aluminum. Diamond, floral, and colonial patterns. Custom sizes to fit any window opening.</p>
                     <div class="product-specs" style="margin:1rem 0;">
-                        <div class="product-spec"><div class="product-spec-label">Materials</div><div class="product-spec-val">MS / SS / Aluminum</div></div>
+                        <div class="product-spec"><div class="product-spec-label">Materials</div><div class="product-spec-val">MS / SS</div></div>
                         <div class="product-spec"><div class="product-spec-label">Patterns</div><div class="product-spec-val">15+ Designs</div></div>
                     </div>
                     <a href="contact.html" class="btn btn-primary btn-sm">Get Quote</a>
@@ -278,15 +442,83 @@
     </div>
 </section>
 
-<!-- COMPARE STRIP -->
+<!-- MATERIAL COMPARISON CTA CARD -->
 <section class="section-sm">
     <div class="container">
-        <div class="compare-strip reveal">
-            <div>
-                <h3>Not Sure Which Material to Choose?</h3>
-                <p>Our detailed materials comparison page breaks down MS, SS, and Aluminum — cost, durability, maintenance, and ideal use cases.</p>
+        <div class="product-cta-card reveal">
+            <!-- Background effects -->
+            <div class="product-cta-grid-bg" aria-hidden="true"></div>
+            <div class="product-cta-orb" aria-hidden="true"></div>
+
+            <div class="product-cta-layout">
+                <!-- Left: Content & Actions -->
+                <div class="product-cta-content">
+                    <div class="product-cta-badge">
+                        <span class="product-cta-pulse"></span>
+                        <span>Material Comparison Guide</span>
+                    </div>
+
+                    <h2 class="product-cta-title">
+                        Not Sure Which Material <span class="product-cta-gradient">Fits Your Project?</span>
+                    </h2>
+
+                    <p class="product-cta-desc">
+                        Our comprehensive materials guide breaks down MS (Mild Steel), SS 304 (Stainless Steel), and Architectural Aluminum across durability, maintenance schedules, rust protection, and price per sqft.
+                    </p>
+
+                    <div class="product-cta-actions">
+                        <a href="materials.html" class="btn btn-primary btn-xl product-cta-btn-primary">
+                            <span>Compare Materials Guide</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                        <a href="contact.html" class="btn btn-outline-white btn-xl product-cta-btn-secondary">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                            <span>Speak with Expert</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Visual Material Cards -->
+                <div class="product-cta-visual">
+                    <div class="product-material-pill-stack">
+                        <!-- Pill 1: MS -->
+                        <div class="product-mat-pill">
+                            <div class="product-mat-icon icon-ms">MS</div>
+                            <div class="product-mat-info">
+                                <strong>Mild Steel (MS)</strong>
+                                <span>High Strength • Structural Classic</span>
+                            </div>
+                            <span class="product-mat-tag tag-value">Best Value</span>
+                        </div>
+
+                        <!-- Pill 2: SS 304 -->
+                        <div class="product-mat-pill highlight">
+                            <div class="product-mat-icon icon-ss">SS</div>
+                            <div class="product-mat-info">
+                                <strong>Stainless Steel 304</strong>
+                                <span>100% Rust Proof • Mirror/Satin Finish</span>
+                            </div>
+                            <span class="product-mat-tag tag-popular">Most Popular</span>
+                        </div>
+
+                        <!-- Pill 3: Aluminum -->
+                        <div class="product-mat-pill">
+                            <div class="product-mat-icon icon-al">AL</div>
+                            <div class="product-mat-icon-wrap" style="display:none;"></div>
+                            <div class="product-mat-info">
+                                <strong>Architectural Aluminum</strong>
+                                <span>Zero Maintenance • Powder Coated</span>
+                            </div>
+                            <span class="product-mat-tag tag-modern">Modern Luxe</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <a href="materials.html" class="btn btn-outline-white btn-lg" style="flex-shrink:0;">Compare Materials &rarr;</a>
         </div>
     </div>
 </section>

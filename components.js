@@ -457,6 +457,139 @@ function initPremiumSlider() {
     startTimer();
 }
 
+/* ─── WELDING SPARKS & ELECTRIC ARC BACKGROUND EFFECT ───── */
+function initWeldingSparks() {
+    const canvas = document.getElementById('welding-sparks-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    const flashOverlay = document.getElementById('arc-flash');
+
+    let width = canvas.width = canvas.parentElement.offsetWidth;
+    let height = canvas.height = canvas.parentElement.offsetHeight;
+
+    window.addEventListener('resize', () => {
+        if (!canvas.parentElement) return;
+        width = canvas.width = canvas.parentElement.offsetWidth;
+        height = canvas.height = canvas.parentElement.offsetHeight;
+    });
+
+    const sparks = [];
+    const MAX_SPARKS = 48;
+    const colors = ['#F59E0B', '#FBBF24', '#F97316', '#EF4444', '#FEF3C7', '#E0F2FE'];
+
+    class Spark {
+        constructor(x, y, isBurst = false, isRicochet = false) {
+            this.x = x !== undefined ? x : Math.random() * width;
+            this.y = y !== undefined ? y : height + Math.random() * 20;
+            this.vx = (Math.random() - 0.5) * (isBurst ? 5.5 : 1.4);
+            this.vy = isBurst 
+                ? (isRicochet ? (Math.random() * 3 + 1) : -(Math.random() * 4.5 + 2)) 
+                : -(Math.random() * 1.8 + 0.8);
+            this.size = Math.random() * 2.4 + 0.8;
+            this.color = colors[Math.floor(Math.random() * colors.length)];
+            this.alpha = Math.random() * 0.75 + 0.25;
+            this.decay = Math.random() * 0.009 + 0.004;
+            this.gravity = 0.035;
+            this.flicker = Math.random() * 0.25;
+        }
+
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            this.vy += this.gravity;
+            this.alpha -= this.decay;
+            return this.alpha > 0 && this.y > -20 && this.x > -20 && this.x < width + 20;
+        }
+
+        draw(ctx) {
+            ctx.save();
+            ctx.globalAlpha = Math.max(0, this.alpha + (Math.random() - 0.5) * this.flicker);
+            ctx.fillStyle = this.color;
+            ctx.shadowBlur = 8;
+            ctx.shadowColor = this.color;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        }
+    }
+
+    // Trigger electric arc welding flash
+    function triggerArcFlash(x, y) {
+        if (!flashOverlay) return;
+        const pctX = ((x / width) * 100).toFixed(1);
+        const pctY = ((y / height) * 100).toFixed(1);
+        flashOverlay.style.setProperty('--flash-x', pctX + '%');
+        flashOverlay.style.setProperty('--flash-y', pctY + '%');
+        flashOverlay.classList.add('flashing');
+        setTimeout(() => {
+            flashOverlay.classList.remove('flashing');
+        }, 120);
+    }
+
+    // Interactive torch trail on mouse movement
+    let lastMouseX = 0, lastMouseY = 0;
+    canvas.parentElement.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+        if (Math.hypot(mouseX - lastMouseX, mouseY - lastMouseY) > 16) {
+            if (sparks.length < MAX_SPARKS + 16) {
+                sparks.push(new Spark(mouseX, mouseY, true));
+            }
+            lastMouseX = mouseX;
+            lastMouseY = mouseY;
+        }
+    });
+
+    let animationId;
+    let isVisible = true;
+
+    // Pause rendering when hero is scrolled out of viewport
+    const observer = new IntersectionObserver((entries) => {
+        isVisible = entries[0].isIntersecting;
+        if (isVisible && !animationId) loop();
+    }, { threshold: 0.05 });
+    observer.observe(canvas);
+
+    function loop() {
+        if (!isVisible) {
+            animationId = null;
+            return;
+        }
+
+        ctx.clearRect(0, 0, width, height);
+
+        // Periodically spawn floating forge embers
+        if (sparks.length < MAX_SPARKS && Math.random() < 0.4) {
+            sparks.push(new Spark());
+        }
+
+        // Periodic welding torch strike & arc flash
+        if (Math.random() < 0.015 && sparks.length < MAX_SPARKS) {
+            const burstX = Math.random() * (width * 0.8) + (width * 0.1);
+            const burstY = height * 0.5 + Math.random() * (height * 0.45);
+            triggerArcFlash(burstX, burstY);
+            for (let i = 0; i < 7; i++) {
+                sparks.push(new Spark(burstX, burstY, true, Math.random() < 0.4));
+            }
+        }
+
+        for (let i = sparks.length - 1; i >= 0; i--) {
+            if (!sparks[i].update()) {
+                sparks.splice(i, 1);
+            } else {
+                sparks[i].draw(ctx);
+            }
+        }
+
+        animationId = requestAnimationFrame(loop);
+    }
+
+    loop();
+}
+
 /* ─── DOMContentLoaded INIT ──────────────────────────────── */
 document.addEventListener('DOMContentLoaded', function() {
     injectNav();
@@ -465,5 +598,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initThemeIcons();
     initHeroSlider();
     initPremiumSlider();
+    initWeldingSparks();
 });
+
 

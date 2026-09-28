@@ -9,13 +9,17 @@
     <link rel="stylesheet" href="style.css">
     <style>
         .premium-hero {
-            background: var(--secondary);
+            background: var(--bg-surface);
             min-height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
-            padding: 6rem 0;
+            padding: 6rem 0 5rem;
+            transition: background 0.3s ease;
+        }
+        .dark .premium-hero {
+            background: var(--secondary);
         }
         .premium-hero-orb {
             position: absolute;
@@ -25,6 +29,24 @@
             animation: float 6s ease-in-out infinite;
         }
         @keyframes float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-15px); } }
+        .premium-slider-wrap {
+            position: relative;
+            width: 100%;
+        }
+        .premium-slide {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1);
+        }
+        .premium-slide.active {
+            display: block;
+            opacity: 1;
+            animation: premiumFade 0.7s cubic-bezier(0.16,1,0.3,1) forwards;
+        }
+        @keyframes premiumFade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
         .premium-hero-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -32,26 +54,146 @@
             align-items: center;
             width: 100%;
         }
-        @media (max-width: 768px) { .premium-hero-grid { grid-template-columns: 1fr; } }
-        .premium-hero-left h1 { color: #fff; margin-bottom: 1.25rem; font-size: clamp(2.5rem, 6vw, 4rem); }
-        .premium-hero-left p { color: rgba(255,255,255,0.7); font-size: 1.1rem; margin-bottom: 2rem; max-width: 480px; }
+        @media (max-width: 768px) { .premium-hero-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+        .premium-hero-left h1 { color: var(--text-heading); margin-bottom: 1.25rem; font-size: clamp(2.3rem, 5.5vw, 3.8rem); line-height: 1.15; transition: color 0.3s ease; }
+        .dark .premium-hero-left h1 { color: #fff; }
+        .premium-hero-left p { color: var(--text-body); font-size: 1.05rem; margin-bottom: 2rem; max-width: 500px; transition: color 0.3s ease; }
+        .dark .premium-hero-left p { color: rgba(255,255,255,0.75); }
+        .premium-stat-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem; transition: color 0.3s ease; }
+        .dark .premium-stat-label { color: rgba(255,255,255,0.55); }
+        
+        .premium-hero .hero-badge {
+            color: var(--primary);
+            background: var(--primary-subtle);
+            border: 1px solid rgba(180,83,9,0.25);
+            box-shadow: none;
+        }
+        .premium-hero .hero-badge svg { color: var(--primary); }
+        .dark .premium-hero .hero-badge {
+            color: #FBBF24;
+            background: rgba(245,158,11,0.16);
+            border: 1px solid rgba(251,191,36,0.45);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+        }
+        .dark .premium-hero .hero-badge svg { color: #FBBF24; }
+
+        .btn-hero-secondary {
+            background: var(--bg-card);
+            color: var(--text-heading);
+            border-color: var(--border-default);
+        }
+        .btn-hero-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--primary-subtle);
+        }
+        .dark .btn-hero-secondary {
+            background: transparent;
+            color: #fff;
+            border-color: rgba(255,255,255,0.55);
+        }
+        .dark .btn-hero-secondary:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: #fff;
+            color: #fff;
+        }
+
         .premium-hero-right { position: relative; }
-        .premium-hero-img { border-radius: 1.5rem; overflow: hidden; aspect-ratio: 3/2; }
-        .premium-hero-img img { width: 100%; height: 100%; object-fit: cover; }
+        .premium-hero-img { border-radius: 1.5rem; overflow: hidden; aspect-ratio: 3/2; box-shadow: 0 20px 50px rgba(0,0,0,0.15); border: 1px solid var(--border-default); }
+        .dark .premium-hero-img { box-shadow: 0 20px 50px rgba(0,0,0,0.45); border-color: rgba(255,255,255,0.08); }
+        .premium-hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .premium-badge-float {
             position: absolute;
             background: rgba(180,83,9,0.92);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(180,83,9,0.5);
             border-radius: 1rem;
-            padding: 1rem 1.25rem;
+            padding: 0.875rem 1.15rem;
             color: #fff;
             text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
         }
-        .premium-badge-float.top-left { top: -20px; left: -20px; }
-        .premium-badge-float.bottom-right { bottom: -20px; right: -20px; }
-        .premium-badge-float .num { font-family: 'Sora', sans-serif; font-size: 1.75rem; font-weight: 700; line-height: 1; }
-        .premium-badge-float .label { font-size: 0.72rem; opacity: 0.85; margin-top: 0.2rem; }
+        .premium-badge-float.top-left { top: -16px; left: -16px; }
+        .premium-badge-float.bottom-right { bottom: -16px; right: -16px; }
+        .premium-badge-float .num { font-family: 'Sora', sans-serif; font-size: 1.6rem; font-weight: 700; line-height: 1; }
+        .premium-badge-float .label { font-size: 0.72rem; opacity: 0.9; margin-top: 0.2rem; font-weight: 500; }
+        
+        .premium-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.25rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 10;
+        }
+        .premium-arrow {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-default);
+            color: var(--text-heading);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            box-shadow: var(--shadow-sm);
+        }
+        .premium-arrow:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+            transform: scale(1.08);
+            box-shadow: 0 4px 18px rgba(180,83,9,0.35);
+        }
+        .dark .premium-arrow {
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #fff;
+            box-shadow: none;
+        }
+        .dark .premium-arrow:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+        }
+        [dir="rtl"] .premium-arrow svg { transform: scaleX(-1); }
+        
+        .premium-dots {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--bg-card);
+            padding: 0.4rem 0.85rem;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--border-default);
+            box-shadow: var(--shadow-sm);
+        }
+        .dark .premium-dots {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: none;
+        }
+        .premium-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: var(--radius-full);
+            background: var(--border-default);
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+        }
+        .dark .premium-dot {
+            background: rgba(255,255,255,0.3);
+        }
+        .premium-dot:hover:not(.active) { background: var(--text-muted); }
+        .dark .premium-dot:hover:not(.active) { background: rgba(255,255,255,0.7); }
+        .premium-dot.active { width: 28px; background: var(--primary); box-shadow: 0 0 10px rgba(180,83,9,0.6); }
 
         .marquee-wrap { overflow: hidden; background: var(--primary); padding: 0.875rem 0; }
         .marquee-track { display: flex; gap: 3rem; white-space: nowrap; animation: marquee 20s linear infinite; }
@@ -60,32 +202,54 @@
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         .masonry-grid {
-            columns: 3;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.25rem;
         }
-        .masonry-grid > * { break-inside: avoid; margin-bottom: 1.25rem; }
-        @media (max-width: 768px) { .masonry-grid { columns: 2; } }
-        @media (max-width: 480px) { .masonry-grid { columns: 1; } }
+        @media (max-width: 768px) { .masonry-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px) { .masonry-grid { grid-template-columns: 1fr; } }
 
-        .masonry-item { border-radius: 1.125rem; overflow: hidden; position: relative; cursor: pointer; }
-        .masonry-item img { width: 100%; display: block; transition: transform 0.5s ease; }
+        .masonry-item { border-radius: 1.125rem; overflow: hidden; position: relative; cursor: pointer; aspect-ratio: 4 / 3; height: 100%; }
+        .masonry-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
         .masonry-item:hover img { transform: scale(1.05); }
         .masonry-item-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%); opacity: 0; transition: opacity 0.35s ease; display: flex; align-items: flex-end; padding: 1.25rem; }
         .masonry-item:hover .masonry-item-overlay { opacity: 1; }
         .masonry-item-overlay span { color: #fff; font-size: 0.875rem; font-weight: 600; }
 
+        .features-dark-section {
+            background: var(--bg-surface);
+            transition: background 0.3s ease;
+        }
+        .features-dark-section h2 { color: var(--text-heading); }
+        .features-dark-section p { color: var(--text-body); }
+        .dark .features-dark-section {
+            background: var(--secondary);
+        }
+        .dark .features-dark-section h2 { color: #fff; }
+        .dark .features-dark-section p { color: rgba(255,255,255,0.6); }
+
         .dark-card {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: var(--bg-card);
+            border: 1px solid var(--border-default);
             border-radius: 1.25rem;
             padding: 2rem;
             transition: all 0.35s ease;
+            box-shadow: var(--shadow-card);
         }
-        .dark-card:hover { background: rgba(180,83,9,0.1); border-color: rgba(180,83,9,0.25); transform: translateY(-3px); }
-        .dark-card-icon { width: 48px; height: 48px; background: rgba(180,83,9,0.18); border-radius: 0.875rem; display: flex; align-items: center; justify-content: center; color: #B45309; margin-bottom: 1rem; }
+        .dark-card:hover { background: var(--bg-card); border-color: var(--primary); transform: translateY(-3px); box-shadow: var(--shadow-card-hover); }
+        .dark-card-icon { width: 48px; height: 48px; background: rgba(180,83,9,0.12); border-radius: 0.875rem; display: flex; align-items: center; justify-content: center; color: var(--primary); margin-bottom: 1rem; }
         .dark-card-icon svg { width: 22px; height: 22px; }
-        .dark-card h4 { color: #fff; font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .dark-card p { color: rgba(255,255,255,0.6); font-size: 0.875rem; }
+        .dark-card h4 { color: var(--text-heading); font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .dark-card p { color: var(--text-body); font-size: 0.875rem; }
+
+        .dark .dark-card {
+            background: rgba(255,255,255,0.04);
+            border-color: rgba(255,255,255,0.08);
+            box-shadow: none;
+        }
+        .dark .dark-card:hover { background: rgba(180,83,9,0.1); border-color: rgba(180,83,9,0.25); box-shadow: none; }
+        .dark .dark-card h4 { color: #fff; }
+        .dark .dark-card p { color: rgba(255,255,255,0.6); }
 
         .timeline { display: flex; flex-direction: column; gap: 0; max-width: 680px; margin: 0 auto; }
         .timeline-item { display: flex; gap: 1.5rem; padding-bottom: 2.5rem; position: relative; }
@@ -113,50 +277,161 @@
 <div id="main-nav"></div>
 
 <!-- PREMIUM HERO -->
-<section class="premium-hero">
+<section class="premium-hero" id="premium-hero-slider">
     <div class="premium-hero-orb" style="width:500px;height:500px;background:radial-gradient(circle, rgba(180,83,9,0.12) 0%, transparent 70%);top:-100px;right:-100px;"></div>
     <div class="premium-hero-orb" style="width:300px;height:300px;background:radial-gradient(circle, rgba(180,83,9,0.08) 0%, transparent 70%);bottom:-50px;left:-50px;animation-delay:3s;"></div>
+    
     <div class="container">
-        <div class="premium-hero-grid">
-            <div class="premium-hero-left reveal">
-                <div class="hero-badge">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    Premium Collection 2024
-                </div>
-                <h1>Where Steel Meets Sophistication</h1>
-                <p>Elevate your home's entrance with bespoke metalwork crafted by master fabricators. Each gate, railing, and grill is a unique piece of functional art.</p>
-                <div style="display:flex;gap:1rem;flex-wrap:wrap;">
-                    <a href="contact.html" class="btn btn-primary btn-xl">Request Custom Design</a>
-                    <a href="gallery.html" class="btn btn-outline-white btn-xl">View Portfolio</a>
-                </div>
-                <div style="display:flex;gap:2rem;margin-top:2.5rem;flex-wrap:wrap;">
-                    <div>
-                        <div style="font-family:'Sora',sans-serif;font-size:1.75rem;font-weight:700;color:#B45309;line-height:1;">50+</div>
-                        <div style="font-size:0.8rem;color:rgba(255,255,255,0.55);margin-top:0.2rem;">Design Patterns</div>
+        <div class="premium-slider-wrap">
+            <!-- Slide 1 -->
+            <div class="premium-slide active">
+                <div class="premium-hero-grid">
+                    <div class="premium-hero-left">
+                        <div class="hero-badge">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            Premium Collection 2024
+                        </div>
+                        <h1>Where Steel Meets Sophistication</h1>
+                        <p>Elevate your home's entrance with bespoke metalwork crafted by master fabricators. Each gate, railing, and grill is a unique piece of functional art.</p>
+                        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+                            <a href="contact.html" class="btn btn-primary btn-xl">Request Custom Design</a>
+                            <a href="gallery.html" class="btn btn-hero-secondary btn-xl">View Portfolio</a>
+                        </div>
+                        <div style="display:flex;gap:2rem;margin-top:2.5rem;flex-wrap:wrap;">
+                            <div>
+                                <div style="font-family:'Sora',sans-serif;font-size:1.75rem;font-weight:700;color:var(--primary);line-height:1;">50+</div>
+                                <div class="premium-stat-label">Design Patterns</div>
+                            </div>
+                            <div>
+                                <div style="font-family:'Sora',sans-serif;font-size:1.75rem;font-weight:700;color:var(--primary);line-height:1;">3</div>
+                                <div class="premium-stat-label">Premium Materials</div>
+                            </div>
+                            <div>
+                                <div style="font-family:'Sora',sans-serif;font-size:1.75rem;font-weight:700;color:var(--primary);line-height:1;">Free</div>
+                                <div class="premium-stat-label">Site Visit</div>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <div style="font-family:'Sora',sans-serif;font-size:1.75rem;font-weight:700;color:#B45309;line-height:1;">3</div>
-                        <div style="font-size:0.8rem;color:rgba(255,255,255,0.55);margin-top:0.2rem;">Premium Materials</div>
-                    </div>
-                    <div>
-                        <div style="font-family:'Sora',sans-serif;font-size:1.75rem;font-weight:700;color:#B45309;line-height:1;">Free</div>
-                        <div style="font-size:0.8rem;color:rgba(255,255,255,0.55);margin-top:0.2rem;">Site Visit</div>
+                    <div class="premium-hero-right">
+                        <div class="premium-hero-img">
+                            <img src="assets/images/hero-premium.jpg" alt="Luxury estate gate with night lighting" loading="eager">
+                        </div>
+                        <div class="premium-badge-float top-left">
+                            <div class="num">5yr</div>
+                            <div class="label">Warranty</div>
+                        </div>
+                        <div class="premium-badge-float bottom-right">
+                            <div class="num">98%</div>
+                            <div class="label">Satisfaction</div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="premium-hero-right reveal" style="animation-delay:0.2s;">
-                <div class="premium-hero-img">
-                    <img src="assets/images/hero-premium.jpg" alt="Luxury estate gate with night lighting">
-                </div>
-                <div class="premium-badge-float top-left">
-                    <div class="num">5yr</div>
-                    <div class="label">Warranty</div>
-                </div>
-                <div class="premium-badge-float bottom-right">
-                    <div class="num">98%</div>
-                    <div class="label">Satisfaction</div>
+
+            <!-- Slide 2 -->
+            <div class="premium-slide">
+                <div class="premium-hero-grid">
+                    <div class="premium-hero-left">
+                        <div class="hero-badge">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            Automated Luxury Gates
+                        </div>
+                        <h1>Smart Motorized Estate Gates</h1>
+                        <p>Seamless automation combined with heavy-gauge anti-corrosive metalwork, smartphone &amp; remote controls, and built-in LED ambient channel lighting.</p>
+                        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+                            <a href="products.html" class="btn btn-primary btn-xl">Explore Gate Models</a>
+                            <a href="pricing.html" class="btn btn-hero-secondary btn-xl">Get Pricing Guide</a>
+                        </div>
+                        <div style="display:flex;gap:2rem;margin-top:2.5rem;flex-wrap:wrap;">
+                            <div>
+                                <div style="font-family:'Sora',sans-serif;font-size:1.75rem;font-weight:700;color:var(--primary);line-height:1;">Ready</div>
+                                <div class="premium-stat-label">Smart Automation</div>
+                            </div>
+                            <div>
+                                <div style="font-family:'Sora',sans-serif;font-size:1.75rem;font-weight:700;color:var(--primary);line-height:1;">304</div>
+                                <div class="premium-stat-label">Grade SS Steel</div>
+                            </div>
+                            <div>
+                                <div style="font-family:'Sora',sans-serif;font-size:1.75rem;font-weight:700;color:var(--primary);line-height:1;">100%</div>
+                                <div class="premium-stat-label">Weather-Proof</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="premium-hero-right">
+                        <div class="premium-hero-img">
+                            <img src="assets/images/ms-steel-gate.jpg" alt="Heavy duty motorized steel gate" loading="lazy">
+                        </div>
+                        <div class="premium-badge-float top-left">
+                            <div class="num">Smart</div>
+                            <div class="label">Automation</div>
+                        </div>
+                        <div class="premium-badge-float bottom-right">
+                            <div class="num">100%</div>
+                            <div class="label">Rust-Proof</div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <!-- Slide 3 -->
+            <div class="premium-slide">
+                <div class="premium-hero-grid">
+                    <div class="premium-hero-left">
+                        <div class="hero-badge">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            Bespoke Architectural Railings
+                        </div>
+                        <h1>Designer Balcony &amp; Glass Railings</h1>
+                        <p>Engineered for modern luxury villas — architectural stainless steel integrated with toughened safety glass and handcrafted finishings.</p>
+                        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+                            <a href="gallery.html" class="btn btn-primary btn-xl">View Railing Gallery</a>
+                            <a href="contact.html" class="btn btn-hero-secondary btn-xl">Talk to Designer</a>
+                        </div>
+                        <div style="display:flex;gap:2rem;margin-top:2.5rem;flex-wrap:wrap;">
+                            <div>
+                                <div style="font-family:'Sora',sans-serif;font-size:1.75rem;font-weight:700;color:var(--primary);line-height:1;">12mm</div>
+                                <div class="premium-stat-label">Toughened Glass</div>
+                            </div>
+                            <div>
+                                <div style="font-family:'Sora',sans-serif;font-size:1.75rem;font-weight:700;color:var(--primary);line-height:1;">CNC</div>
+                                <div class="premium-stat-label">Precision Laser</div>
+                            </div>
+                            <div>
+                                <div style="font-family:'Sora',sans-serif;font-size:1.75rem;font-weight:700;color:var(--primary);line-height:1;">0%</div>
+                                <div class="premium-stat-label">Maintenance</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="premium-hero-right">
+                        <div class="premium-hero-img">
+                            <img src="assets/images/ss-railing.jpg" alt="Stainless steel and glass railing installation" loading="lazy">
+                        </div>
+                        <div class="premium-badge-float top-left">
+                            <div class="num">CNC</div>
+                            <div class="label">Precision</div>
+                        </div>
+                        <div class="premium-badge-float bottom-right">
+                            <div class="num">0%</div>
+                            <div class="label">Maintenance</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slider Controls -->
+        <div class="premium-controls">
+            <button class="premium-arrow" aria-label="Previous Slide" onclick="changePremiumSlide(-1)">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div class="premium-dots" id="premium-slider-dots">
+                <button class="premium-dot active" aria-label="Go to slide 1" onclick="setPremiumSlide(0)"></button>
+                <button class="premium-dot" aria-label="Go to slide 2" onclick="setPremiumSlide(1)"></button>
+                <button class="premium-dot" aria-label="Go to slide 3" onclick="setPremiumSlide(2)"></button>
+            </div>
+            <button class="premium-arrow" aria-label="Next Slide" onclick="changePremiumSlide(1)">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
         </div>
     </div>
 </section>
@@ -237,14 +512,14 @@
     </div>
 </section>
 
-<!-- DARK FEATURE SECTION -->
-<section class="section" style="background:var(--secondary);">
+<!-- DARK / LIGHT FEATURE SECTION -->
+<section class="section features-dark-section">
     <div class="container">
         <div class="section-header reveal">
-            <span class="section-tag" style="background:rgba(180,83,9,0.2);border-color:rgba(180,83,9,0.4);">Why Choose Us</span>
-            <h2 style="color:#fff;">The IronCraft Difference</h2>
+            <span class="section-tag">Why Choose Us</span>
+            <h2>The IronCraft Difference</h2>
             <span class="accent-line" style="margin:0.875rem auto 1rem;"></span>
-            <p style="color:rgba(255,255,255,0.6);">We don't just build gates — we create lasting first impressions for your home.</p>
+            <p>We don't just build gates — we create lasting first impressions for your home.</p>
         </div>
         <div class="grid-3 reveal">
             <div class="dark-card">

@@ -97,7 +97,7 @@ function injectNav() {
                 <button onclick="toggleTheme()" class="nav-icon-btn" title="Toggle Theme" aria-label="Toggle dark mode">
                     <span class="theme-icon-wrap">${isDark ? ICONS.sun : ICONS.moon}</span>
                 </button>
-                <a href="contact.html" class="btn btn-primary btn-sm">Get Quote</a>
+                <a href="login.html" class="btn btn-primary btn-sm">Sign In</a>
                 <button class="mobile-menu-btn" onclick="toggleMobileMenu(event)" aria-label="Open menu">
                     <span class="mobile-menu-icon">${ICONS.menu}</span>
                 </button>
@@ -107,7 +107,7 @@ function injectNav() {
         <div class="mobile-menu" id="mobile-menu">
             ${mobileLinksHTML}
             <div class="mob-actions">
-                <a href="contact.html" class="btn btn-primary w-full">Get Free Quote</a>
+                <a href="login.html" class="btn btn-primary w-full">Sign In</a>
             </div>
             <div class="mob-toggles">
                 <button onclick="toggleDir()" class="nav-icon-btn" title="Toggle Direction">
@@ -302,9 +302,168 @@ function startCountdown(targetDate) {
     setInterval(update, 1000);
 }
 
+/* ─── PASSWORD TOGGLE ────────────────────────────────────── */
+function togglePasswordVisibility(id, btn) {
+    const input = document.getElementById(id);
+    if (!input) return;
+    const isPw = input.type === 'password';
+    input.type = isPw ? 'text' : 'password';
+    if (btn) {
+        btn.innerHTML = isPw 
+            ? `<span class="pw-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></span>`
+            : `<span class="pw-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span>`;
+    }
+}
+
+/* ─── AUTH PAGE & THEME INITIALIZATION ───────────────────── */
+function initThemeIcons() {
+    document.querySelectorAll('.theme-icon-wrap').forEach(updateThemeIcon);
+    const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+    document.querySelectorAll('.dir-label').forEach(el => {
+        el.textContent = isRTL ? 'RTL' : 'LTR';
+    });
+}
+
+function initAuthPage() {
+    initThemeIcons();
+}
+
+/* ─── HERO SLIDERS (5-SECOND AUTOPLAY) ───────────────────── */
+let heroSlideIndex = 0;
+let heroSlideTimer = null;
+
+function initHeroSlider() {
+    const slider = document.getElementById('hero-slider');
+    if (!slider) return;
+    const slides = slider.querySelectorAll('.hero-slide');
+    const dots = slider.querySelectorAll('#hero-slider-dots .slider-dot');
+    if (slides.length <= 1) return;
+
+    function showSlide(index) {
+        heroSlideIndex = (index + slides.length) % slides.length;
+        slides.forEach((slide, idx) => {
+            slide.classList.toggle('active', idx === heroSlideIndex);
+        });
+        dots.forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === heroSlideIndex);
+        });
+    }
+
+    function nextSlide() {
+        showSlide(heroSlideIndex + 1);
+    }
+
+    function startTimer() {
+        stopTimer();
+        heroSlideTimer = setInterval(nextSlide, 5000);
+    }
+
+    function stopTimer() {
+        if (heroSlideTimer) clearInterval(heroSlideTimer);
+    }
+
+    window.changeHeroSlide = function(direction) {
+        showSlide(heroSlideIndex + direction);
+        startTimer();
+    };
+
+    window.setHeroSlide = function(index) {
+        showSlide(index);
+        startTimer();
+    };
+
+    // Pause auto-rotation on mouse enter, resume on mouse leave
+    slider.addEventListener('mouseenter', stopTimer);
+    slider.addEventListener('mouseleave', startTimer);
+
+    // Touch swipe support for mobile
+    let touchStartX = 0;
+    slider.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    slider.addEventListener('touchend', (e) => {
+        const diff = touchStartX - e.changedTouches[0].screenX;
+        if (Math.abs(diff) > 45) {
+            const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+            if (diff > 0) window.changeHeroSlide(isRTL ? -1 : 1);
+            else window.changeHeroSlide(isRTL ? 1 : -1);
+        }
+    }, { passive: true });
+
+    startTimer();
+}
+
+let premiumSlideIndex = 0;
+let premiumSlideTimer = null;
+
+function initPremiumSlider() {
+    const slider = document.getElementById('premium-hero-slider');
+    if (!slider) return;
+    const slides = slider.querySelectorAll('.premium-slide');
+    const dots = slider.querySelectorAll('#premium-slider-dots .premium-dot');
+    if (slides.length <= 1) return;
+
+    function showSlide(index) {
+        premiumSlideIndex = (index + slides.length) % slides.length;
+        slides.forEach((slide, idx) => {
+            slide.classList.toggle('active', idx === premiumSlideIndex);
+        });
+        dots.forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === premiumSlideIndex);
+        });
+    }
+
+    function nextSlide() {
+        showSlide(premiumSlideIndex + 1);
+    }
+
+    function startTimer() {
+        stopTimer();
+        premiumSlideTimer = setInterval(nextSlide, 5000);
+    }
+
+    function stopTimer() {
+        if (premiumSlideTimer) clearInterval(premiumSlideTimer);
+    }
+
+    window.changePremiumSlide = function(direction) {
+        showSlide(premiumSlideIndex + direction);
+        startTimer();
+    };
+
+    window.setPremiumSlide = function(index) {
+        showSlide(index);
+        startTimer();
+    };
+
+    // Pause on hover
+    slider.addEventListener('mouseenter', stopTimer);
+    slider.addEventListener('mouseleave', startTimer);
+
+    // Touch swipe support
+    let touchStartX = 0;
+    slider.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    slider.addEventListener('touchend', (e) => {
+        const diff = touchStartX - e.changedTouches[0].screenX;
+        if (Math.abs(diff) > 45) {
+            const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+            if (diff > 0) window.changePremiumSlide(isRTL ? -1 : 1);
+            else window.changePremiumSlide(isRTL ? 1 : -1);
+        }
+    }, { passive: true });
+
+    startTimer();
+}
+
 /* ─── DOMContentLoaded INIT ──────────────────────────────── */
 document.addEventListener('DOMContentLoaded', function() {
     injectNav();
     injectFooter();
     initReveal();
+    initThemeIcons();
+    initHeroSlider();
+    initPremiumSlider();
 });
+

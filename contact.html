@@ -8,11 +8,11 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
     <style>
-        .page-hero { background:var(--secondary); padding:6rem 0 5rem; position:relative; overflow:hidden; }
+        .page-hero { background:var(--secondary); padding:6rem 0 5rem; position:relative; overflow:hidden; text-align:center; }
         .page-hero::before { content:''; position:absolute; top:-60px; right:-60px; width:400px; height:400px; background:radial-gradient(circle, rgba(180,83,9,0.12) 0%, transparent 70%); border-radius:50%; pointer-events:none; }
-        .page-hero h1 { color:#fff; margin-bottom:1rem; }
-        .page-hero p { color:rgba(255,255,255,0.65); max-width:560px; font-size:1.05rem; }
-        .breadcrumb { display:flex; align-items:center; gap:0.5rem; margin-bottom:1.5rem; font-size:0.825rem; }
+        .page-hero h1 { color:#fff; margin-bottom:1rem; text-align:center; }
+        .page-hero p { color:rgba(255,255,255,0.65); max-width:600px; font-size:1.05rem; margin:0 auto; text-align:center; }
+        .breadcrumb { display:flex; align-items:center; justify-content:center; gap:0.5rem; margin-bottom:1.5rem; font-size:0.825rem; }
         .breadcrumb a { color:rgba(255,255,255,0.5); transition:color 0.2s; }
         .breadcrumb a:hover { color:var(--primary); }
         .breadcrumb span { color:rgba(255,255,255,0.3); }
@@ -83,57 +83,59 @@
     <div class="container">
         <div class="contact-wrap reveal">
             <!-- INFO PANEL -->
-            <div class="contact-info-card">
-                <h3>Get in Touch</h3>
-                <p>We're here to help. Reach us by phone, WhatsApp, or email. Our office is open Monday through Saturday.</p>
+            <div>
+                <div class="contact-info-card">
+                    <h3>Get in Touch</h3>
+                    <p>We're here to help. Reach us by phone, WhatsApp, or email. Our office is open Monday through Saturday.</p>
 
-                <div class="contact-detail">
-                    <div class="contact-detail-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                        <div>
+                            <strong>Phone / WhatsApp</strong>
+                            <span>+91 98400 00000<br>+91 98400 11111</span>
+                        </div>
                     </div>
-                    <div>
-                        <strong>Phone / WhatsApp</strong>
-                        <span>+91 98400 00000<br>+91 98400 11111</span>
+
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </div>
+                        <div>
+                            <strong>Email</strong>
+                            <span>info@ironcraft.in<br>quotes@ironcraft.in</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        </div>
+                        <div>
+                            <strong>Workshop Address</strong>
+                            <span>No. 12, Industrial Layout,<br>Ambattur, Chennai – 600 058,<br>Tamil Nadu, India</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-detail" style="border-bottom:none;padding-bottom:0;">
+                        <div class="contact-detail-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                        <div>
+                            <strong>Working Hours</strong>
+                            <span>Mon – Sat: 8:00 AM – 7:00 PM<br>Sunday: Closed</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="contact-detail">
-                    <div class="contact-detail-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                    </div>
-                    <div>
-                        <strong>Email</strong>
-                        <span>info@ironcraft.in<br>quotes@ironcraft.in</span>
-                    </div>
-                </div>
-
-                <div class="contact-detail">
-                    <div class="contact-detail-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                    </div>
-                    <div>
-                        <strong>Workshop Address</strong>
-                        <span>No. 12, Industrial Layout,<br>Ambattur, Chennai – 600 058,<br>Tamil Nadu, India</span>
-                    </div>
-                </div>
-
-                <div class="contact-detail">
-                    <div class="contact-detail-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    </div>
-                    <div>
-                        <strong>Working Hours</strong>
-                        <span>Mon – Sat: 8:00 AM – 7:00 PM<br>Sunday: Closed</span>
-                    </div>
-                </div>
-
-                <div class="contact-detail" style="border-bottom:none;padding-bottom:0;">
-                    <div class="contact-detail-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/></svg>
-                    </div>
-                    <div>
-                        <strong>Service Area</strong>
-                        <span>Chennai, Coimbatore, Madurai,<br>Salem, Trichy, Vellore, Tirunelveli,<br>and surrounding districts</span>
+                <div class="contact-img-card">
+                    <img src="assets/images/consultation.jpg" alt="Free On-Site Consultation and Measurement">
+                    <div class="contact-img-overlay">
+                        <span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            Free On-Site Measurement Included
+                        </span>
                     </div>
                 </div>
             </div>
@@ -261,10 +263,16 @@
             <span class="section-tag">Find Us</span>
             <h2>Our Workshop Location</h2>
         </div>
-        <div class="map-placeholder reveal">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span>No. 12, Industrial Layout, Ambattur, Chennai – 600 058</span>
-            <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn btn-primary btn-sm" style="margin-top:0.5rem;">Open in Google Maps</a>
+        <div class="live-map-wrap reveal">
+            <iframe 
+                src="https://maps.google.com/maps?q=Ambattur+Industrial+Estate,+Chennai,+Tamil+Nadu&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                width="100%" 
+                height="400" 
+                style="border:0; width:100%; height:400px; display:block;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                title="IronCraft Workshop Location Map">
+            </iframe>
         </div>
     </div>
 </section>

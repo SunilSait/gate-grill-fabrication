@@ -104,44 +104,6 @@
             100% { transform: translateY(-48%) rotate(-1deg); }
         }
 
-        /* CNC Laser Cutting Scanner Line */
-        .cnc-laser-beam {
-            position: absolute;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(180, 83, 9, 0.1) 15%, 
-                rgba(245, 158, 11, 0.85) 50%, 
-                rgba(180, 83, 9, 0.1) 85%, 
-                transparent 100%
-            );
-            box-shadow: 0 0 14px rgba(245, 158, 11, 0.7), 0 0 28px rgba(180, 83, 9, 0.4);
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0.7;
-            animation: laserScan 10s ease-in-out infinite;
-        }
-        .cnc-laser-beam::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 9px;
-            height: 9px;
-            border-radius: 50%;
-            background: #FFFBEB;
-            box-shadow: 0 0 16px 6px rgba(245, 158, 11, 0.95);
-        }
-        @keyframes laserScan {
-            0% { top: 8%; opacity: 0; transform: scaleX(0.7); }
-            12% { opacity: 0.75; transform: scaleX(1); }
-            50% { top: 92%; opacity: 0.65; transform: scaleX(1); }
-            88% { opacity: 0.75; transform: scaleX(1); }
-            100% { top: 8%; opacity: 0; transform: scaleX(0.7); }
-        }
 
         /* Electric Arc Welding Flash Overlay */
         .arc-flash-overlay {
@@ -433,9 +395,9 @@
         .masonry-item { border-radius: 1.125rem; overflow: hidden; position: relative; cursor: pointer; aspect-ratio: 4 / 3; height: 100%; }
         .masonry-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
         .masonry-item:hover img { transform: scale(1.05); }
-        .masonry-item-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%); opacity: 0; transition: opacity 0.35s ease; display: flex; align-items: flex-end; padding: 1.25rem; }
+        .masonry-item-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 40%, transparent 65%); opacity: 0; transition: opacity 0.35s ease; display: flex; align-items: flex-end; padding: 1.25rem 1.4rem; }
         .masonry-item:hover .masonry-item-overlay { opacity: 1; }
-        .masonry-item-overlay span { color: #fff; font-size: 0.875rem; font-weight: 600; }
+        .masonry-item-overlay span { color: #fff; font-size: 0.95rem; font-weight: 600; text-shadow: 0 2px 8px rgba(0,0,0,0.95), 0 1px 3px rgba(0,0,0,0.9); }
 
         .features-dark-section {
             background: var(--bg-surface);
@@ -1080,7 +1042,6 @@
 <section class="premium-hero" id="premium-hero-slider">
     <!-- Fabrication Themed Background Elements -->
     <div class="fabrication-bg-grid" aria-hidden="true"></div>
-    <div class="cnc-laser-beam" aria-hidden="true"></div>
     <div class="arc-flash-overlay" id="arc-flash" aria-hidden="true"></div>
     <canvas id="welding-sparks-canvas" class="welding-sparks-canvas" aria-hidden="true"></canvas>
     

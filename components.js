@@ -61,6 +61,7 @@ function injectNav() {
     const links = [
         { href: 'index.html', label: 'Home' },
         { href: 'home2.html', label: 'Home 2' },
+        { href: 'about.html', label: 'About Us' },
         { href: 'products.html', label: 'Products' },
         { href: 'gallery.html', label: 'Design Gallery' },
         { href: 'materials.html', label: 'Materials' },
@@ -190,6 +191,7 @@ function injectFooter() {
                     <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="home2.html">Home 2 — Premium</a></li>
+                        <li><a href="about.html">About Us</a></li>
                         <li><a href="products.html">Products</a></li>
                         <li><a href="gallery.html">Design Gallery</a></li>
                         <li><a href="materials.html">Materials</a></li>

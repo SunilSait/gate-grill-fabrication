@@ -462,20 +462,26 @@
         }
         .timeline-item:nth-child(odd) {
             left: 0;
+            right: auto;
             padding-right: 3.25rem;
             text-align: right;
         }
         .timeline-item:nth-child(even) {
             left: 50%;
+            right: auto;
             padding-left: 3.25rem;
             text-align: left;
         }
         [dir="rtl"] .timeline-item:nth-child(odd) {
+            left: auto;
+            right: 0;
             padding-right: 0;
             padding-left: 3.25rem;
             text-align: left;
         }
         [dir="rtl"] .timeline-item:nth-child(even) {
+            left: auto;
+            right: 50%;
             padding-left: 0;
             padding-right: 3.25rem;
             text-align: right;
